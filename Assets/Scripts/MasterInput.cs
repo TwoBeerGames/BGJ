@@ -204,6 +204,14 @@ public class @MasterInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Scroll"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""aa64530c-158d-46cd-a15f-48562f12b50d"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -228,6 +236,17 @@ public class @MasterInput : IInputActionCollection, IDisposable
                     ""action"": ""MousePosition"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f0666614-d4ac-4c6f-96cb-f21930889813"",
+                    ""path"": ""<Mouse>/scroll/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Scroll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -248,6 +267,7 @@ public class @MasterInput : IInputActionCollection, IDisposable
         m_Mouse = asset.FindActionMap("Mouse", throwIfNotFound: true);
         m_Mouse_MousePosition = m_Mouse.FindAction("MousePosition", throwIfNotFound: true);
         m_Mouse_MouseDelta = m_Mouse.FindAction("MouseDelta", throwIfNotFound: true);
+        m_Mouse_Scroll = m_Mouse.FindAction("Scroll", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -388,12 +408,14 @@ public class @MasterInput : IInputActionCollection, IDisposable
     private IMouseActions m_MouseActionsCallbackInterface;
     private readonly InputAction m_Mouse_MousePosition;
     private readonly InputAction m_Mouse_MouseDelta;
+    private readonly InputAction m_Mouse_Scroll;
     public struct MouseActions
     {
         private @MasterInput m_Wrapper;
         public MouseActions(@MasterInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @MousePosition => m_Wrapper.m_Mouse_MousePosition;
         public InputAction @MouseDelta => m_Wrapper.m_Mouse_MouseDelta;
+        public InputAction @Scroll => m_Wrapper.m_Mouse_Scroll;
         public InputActionMap Get() { return m_Wrapper.m_Mouse; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -409,6 +431,9 @@ public class @MasterInput : IInputActionCollection, IDisposable
                 @MouseDelta.started -= m_Wrapper.m_MouseActionsCallbackInterface.OnMouseDelta;
                 @MouseDelta.performed -= m_Wrapper.m_MouseActionsCallbackInterface.OnMouseDelta;
                 @MouseDelta.canceled -= m_Wrapper.m_MouseActionsCallbackInterface.OnMouseDelta;
+                @Scroll.started -= m_Wrapper.m_MouseActionsCallbackInterface.OnScroll;
+                @Scroll.performed -= m_Wrapper.m_MouseActionsCallbackInterface.OnScroll;
+                @Scroll.canceled -= m_Wrapper.m_MouseActionsCallbackInterface.OnScroll;
             }
             m_Wrapper.m_MouseActionsCallbackInterface = instance;
             if (instance != null)
@@ -419,6 +444,9 @@ public class @MasterInput : IInputActionCollection, IDisposable
                 @MouseDelta.started += instance.OnMouseDelta;
                 @MouseDelta.performed += instance.OnMouseDelta;
                 @MouseDelta.canceled += instance.OnMouseDelta;
+                @Scroll.started += instance.OnScroll;
+                @Scroll.performed += instance.OnScroll;
+                @Scroll.canceled += instance.OnScroll;
             }
         }
     }
@@ -438,5 +466,6 @@ public class @MasterInput : IInputActionCollection, IDisposable
     {
         void OnMousePosition(InputAction.CallbackContext context);
         void OnMouseDelta(InputAction.CallbackContext context);
+        void OnScroll(InputAction.CallbackContext context);
     }
 }
