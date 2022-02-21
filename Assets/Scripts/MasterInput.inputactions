@@ -1,0 +1,223 @@
+{
+    "name": "MasterInput",
+    "maps": [
+        {
+            "name": "Movement",
+            "id": "a3960b07-9dfc-4777-8da9-abbd71adea1f",
+            "actions": [
+                {
+                    "name": "ForwardDown",
+                    "type": "Button",
+                    "id": "5a7d4ddd-9b76-451e-8c76-4696c39d2864",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "BackwardDown",
+                    "type": "Button",
+                    "id": "c67d8571-0222-4e73-bf64-93651dd50873",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "BackwardUp",
+                    "type": "Button",
+                    "id": "09a22176-ccc9-47e3-bee9-3e626b58f5a1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "ForwardUp",
+                    "type": "Button",
+                    "id": "ab877977-6871-49db-af8a-391dfd59dca1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "RightDown",
+                    "type": "Button",
+                    "id": "bc77d7c0-3ede-4547-85cb-00e507822ccb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "RightUp",
+                    "type": "Button",
+                    "id": "52ab0e1d-6679-4f0b-99e8-a8345847fe52",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "LeftUp",
+                    "type": "Button",
+                    "id": "a5bdf0f9-0d7c-4c99-8087-ea7287168b55",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "LeftDown",
+                    "type": "Value",
+                    "id": "1ffd5768-2053-4dd7-9a27-ff050c404de8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c1f7ed1e-b37d-4707-841a-a250f31c510e",
+                    "path": "<Keyboard>/w",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ForwardDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "59090a3e-b6c4-4b48-b5c0-54ab4a33b8bf",
+                    "path": "<Keyboard>/w",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ForwardUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a3c66d83-d1d2-4867-be22-83ddb19de4bf",
+                    "path": "<Keyboard>/s",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BackwardDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "416b09e2-dcf7-4b04-b7d7-bcb0abb5e6a8",
+                    "path": "<Keyboard>/s",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BackwardUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4879f37f-2ba3-4a23-83da-b07bf2f2d53b",
+                    "path": "<Keyboard>/s",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ForwardUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2c3694f7-9675-4620-ae0a-75ffda801aee",
+                    "path": "<Keyboard>/d",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5c1c0a13-d6b6-4de7-abcc-b07d7deb82d7",
+                    "path": "<Keyboard>/d",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fda68d94-afe2-4f3b-be0b-22c7da301169",
+                    "path": "<Keyboard>/a",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c26b25e2-a3ad-4c5e-b49c-ec9fdf314855",
+                    "path": "<Keyboard>/a",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Mouse",
+            "id": "30ab4091-4e06-42ad-9587-68a6ded685ef",
+            "actions": [
+                {
+                    "name": "MousePosition",
+                    "type": "PassThrough",
+                    "id": "2d0e900e-30e4-4c7d-bf39-4abfd956bf64",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "MouseDelta",
+                    "type": "PassThrough",
+                    "id": "1b9c6751-56bb-42f3-b90f-bc6eabf7d750",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "505dc625-d753-4c7c-890b-fec18a300915",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MouseDelta",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b693bd15-cd8b-48c9-9062-4e2978225ace",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MousePosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
