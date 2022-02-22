@@ -255,6 +255,33 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Interaction",
+            "id": "e1995919-a7af-4739-9230-97c04b0e1117",
+            "actions": [
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "8f5a682c-99fe-4b54-bda3-cc23a30c8187",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "2568acdc-b96a-49bf-b41a-14a58e53b97b",
+                    "path": "<Keyboard>/e",
+                    "interactions": "Press(pressPoint=0.2,behavior=1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

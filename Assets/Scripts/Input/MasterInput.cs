@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Scripts/MasterInput.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Scripts/Input/MasterInput.inputactions'
 
 using System;
 using System.Collections;
@@ -268,6 +268,33 @@ public class @MasterInput : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Interaction"",
+            ""id"": ""e1995919-a7af-4739-9230-97c04b0e1117"",
+            ""actions"": [
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""8f5a682c-99fe-4b54-bda3-cc23a30c8187"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""2568acdc-b96a-49bf-b41a-14a58e53b97b"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": ""Press(pressPoint=0.2,behavior=1)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -288,6 +315,9 @@ public class @MasterInput : IInputActionCollection, IDisposable
         m_Mouse_MouseDelta = m_Mouse.FindAction("MouseDelta", throwIfNotFound: true);
         m_Mouse_Scroll = m_Mouse.FindAction("Scroll", throwIfNotFound: true);
         m_Mouse_LeftClick = m_Mouse.FindAction("LeftClick", throwIfNotFound: true);
+        // Interaction
+        m_Interaction = asset.FindActionMap("Interaction", throwIfNotFound: true);
+        m_Interaction_Interact = m_Interaction.FindAction("Interact", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -479,6 +509,39 @@ public class @MasterInput : IInputActionCollection, IDisposable
         }
     }
     public MouseActions @Mouse => new MouseActions(this);
+
+    // Interaction
+    private readonly InputActionMap m_Interaction;
+    private IInteractionActions m_InteractionActionsCallbackInterface;
+    private readonly InputAction m_Interaction_Interact;
+    public struct InteractionActions
+    {
+        private @MasterInput m_Wrapper;
+        public InteractionActions(@MasterInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Interact => m_Wrapper.m_Interaction_Interact;
+        public InputActionMap Get() { return m_Wrapper.m_Interaction; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(InteractionActions set) { return set.Get(); }
+        public void SetCallbacks(IInteractionActions instance)
+        {
+            if (m_Wrapper.m_InteractionActionsCallbackInterface != null)
+            {
+                @Interact.started -= m_Wrapper.m_InteractionActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_InteractionActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_InteractionActionsCallbackInterface.OnInteract;
+            }
+            m_Wrapper.m_InteractionActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
+            }
+        }
+    }
+    public InteractionActions @Interaction => new InteractionActions(this);
     public interface IMovementActions
     {
         void OnForwardDown(InputAction.CallbackContext context);
@@ -496,5 +559,9 @@ public class @MasterInput : IInputActionCollection, IDisposable
         void OnMouseDelta(InputAction.CallbackContext context);
         void OnScroll(InputAction.CallbackContext context);
         void OnLeftClick(InputAction.CallbackContext context);
+    }
+    public interface IInteractionActions
+    {
+        void OnInteract(InputAction.CallbackContext context);
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public Animator headAnimator;
     CharacterController cc;
     Vector3 movementVector = Vector3.zero;
     public float movementSpeed;
@@ -66,5 +67,12 @@ public class PlayerController : MonoBehaviour
 
         if (GlobalInput.rightDown)
             movementVector += transform.right;
+
+        if (movementVector != Vector3.zero)
+            headAnimator.Play("headbob");
+        else
+            headAnimator.Play("default");
+
+
     }
 }
