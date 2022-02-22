@@ -10,20 +10,18 @@ public class GlobalInput : MonoBehaviour
     public static bool backwardDown = false;
     public static bool leftDown = false;
     public static bool rightDown = false;
+    public static Vector2 mouseDelta = Vector2.zero;
 
 
 
     void Awake()
     {
-        StartCoroutine(init());
+        //StartCoroutine(init());
         masterInput = new MasterInput();
-    }
 
-    IEnumerator init()
-    {
-        yield return new WaitForSeconds(1f);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 
-        
         masterInput.Enable();
 
         //Forward
@@ -41,5 +39,14 @@ public class GlobalInput : MonoBehaviour
         //Right
         masterInput.Movement.RightDown.performed += ctx => { rightDown = true; };
         masterInput.Movement.RightUp.performed += ctx => { rightDown = false; };
+
+        masterInput.Mouse.MouseDelta.performed += ctx => { mouseDelta = ctx.ReadValue<Vector2>(); };
+    }
+
+    IEnumerator init()
+    {
+        yield return new WaitForSeconds(.1f);
+
+        
     }
 }

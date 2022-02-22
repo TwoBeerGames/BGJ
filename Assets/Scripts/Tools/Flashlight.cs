@@ -16,14 +16,23 @@ public class Flashlight : Tool
 
         GlobalInput.masterInput.Mouse.LeftClick.performed += ctx =>
         {
-            on = !on;
-            lightSource.gameObject.SetActive(on);
+
         };
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnEnable()
     {
+        GlobalInput.masterInput.Mouse.LeftClick.performed += switchLight;
+    }
 
+    void OnDisable()
+    {
+        GlobalInput.masterInput.Mouse.LeftClick.performed -= switchLight;
+    }
+
+    void switchLight(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        on = !on;
+        lightSource.gameObject.SetActive(on);
     }
 }
