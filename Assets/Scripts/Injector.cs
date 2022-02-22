@@ -15,12 +15,8 @@ public class Injector : Tool
     public int maxAmmo = 3;
     public Nullable<int> ammo = null;
 
-    void Start()
-    {
-        GlobalInput.masterInput.Mouse.LeftClick.performed += ctx => Inject();
-    }
-
     void OnEnable() {
+        GlobalInput.masterInput.Mouse.LeftClick.performed += Inject;
         if (ammoText && slashText && maxAmmoText) {
             // Show Ammo UI
             changeActiveState(true);
@@ -33,13 +29,14 @@ public class Injector : Tool
     }
 
     void OnDisable() {
-        // hide Ammo UI
+        GlobalInput.masterInput.Mouse.LeftClick.performed -= Inject;
+        // Hide Ammo UI
         if (ammoText && slashText && maxAmmoText) {
             changeActiveState(false);
         }
     }
 
-    void Inject() {
+    void Inject(UnityEngine.InputSystem.InputAction.CallbackContext obj) {
         if (ammo > 0) {
             ammo--;
             ammoText.text = ammo.ToString();
