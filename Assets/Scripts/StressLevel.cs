@@ -24,7 +24,7 @@ public class StressLevel : MonoBehaviour
     [Range(0f, 1f)]
     public float end;
     public float oscillationMultiplicator = 1f;
-    Color currentColor = new Color(0,0,0);
+    Color currentColor = new Color(0, 0, 0);
     Vignette vin;
 
     public void Start()
@@ -54,11 +54,13 @@ public class StressLevel : MonoBehaviour
     {
         stressLevel += rate * Time.deltaTime;
 
-         currentColor.r = 1 - stressLevel;
-         currentColor.g = 1 - stressLevel;
-         currentColor.b = 1 - stressLevel;
+        currentColor.r = 1 - stressLevel;
+        currentColor.g = 1 - stressLevel;
+        currentColor.b = 1 - stressLevel;
 
-         vin.color.value = currentColor;
+        vin.color.value = currentColor;
+
+        stressLevel = Mathf.Clamp(stressLevel, 0f, 1f);
 
         if (stressLevel >= 1f)
             die();
