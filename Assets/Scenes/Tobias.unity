@@ -806,6 +806,7 @@ GameObject:
   - component: {fileID: 912279554}
   - component: {fileID: 912279549}
   - component: {fileID: 912279548}
+  - component: {fileID: 912279550}
   m_Layer: 3
   m_Name: Monster
   m_TagString: Untagged
@@ -869,6 +870,19 @@ MonoBehaviour:
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0
   constrainInsideGraph: 0
+--- !u!114 &912279550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 912279547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 066548960445a0a4bbf40b9b6c689eb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentTarget: {fileID: 0}
 --- !u!33 &912279552
 MeshFilter:
   m_ObjectHideFlags: 0
