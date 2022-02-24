@@ -96,7 +96,7 @@ Material:
     - _DstBlend: 0
     - _EmissiveBoost: 0
     - _FrenselMult: 0.56
-    - _FresnelPower: 3.45
+    - _FresnelPower: 8.07
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -129,3 +129,4 @@ Material:
     - _ScatterColor: {r: 1, g: 1, b: 1, a: 0}
     - _SpecularTint: {r: 0.66176474, g: 0.6390795, b: 0.5985078, a: 0}
     - _Tint: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []

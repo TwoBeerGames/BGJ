@@ -18,7 +18,7 @@ public class MonsterController : MonoBehaviour
     public float speedMultiplier = 1f;
     [Range(0, 10f)]
     public float forwardVisionRange = 1f;
-    [Range(0, 10f)]
+    [Range(0, 20f)]
     public float backwardVisionRange = 1f;
     public LayerMask whatIsPlayer;
     [Range(0, 90)]

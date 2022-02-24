@@ -90,13 +90,13 @@ Material:
     m_Floats:
     - _Boost: 6.24
     - _BumpScale: 1
-    - _CoronaAmp: 1.1
-    - _CoronaBoost: 50
+    - _CoronaAmp: 1.25
+    - _CoronaBoost: 49.41
     - _CoronaExp: 2.86
     - _CoronaFalloff: 3.4
     - _CoronaFluidInfluence: 2.72
     - _CoronaFluidTile: 0.24
-    - _CoronaSpeed: 0.27
+    - _CoronaSpeed: 0.2
     - _CoronaTileX: 3
     - _CoronaTileY: 1.69
     - _Cutoff: 0.5
@@ -143,8 +143,8 @@ Material:
     - _RMULt: 21.28
     - _RPOW: 0
     - _SmoothnessTextureChannel: 0
-    - _SolarStormFalloff: 2.11
-    - _SolarStormPower: 111
+    - _SolarStormFalloff: 5.8
+    - _SolarStormPower: 110.8
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _SunGTiling: 2.54
@@ -162,9 +162,10 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Cool: {r: 0.4339999, g: 0.1279999, b: 0, a: 0.597}
-    - _CoronaColor: {r: 1, g: 0.44695115, b: 0.14705881, a: 0.034}
+    - _CoronaColor: {r: 1, g: 0.4469511, b: 0.14705878, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FresnelColor: {r: 1, g: 0.45882353, b: 0.2, a: 1}
     - _Hot: {r: 1, g: 0.4039215, b: 0, a: 0.101960786}
     - _LightningColor: {r: 1, g: 0.6964503, b: 0.46323526, a: 0}
     - _Warm: {r: 1, g: 0.6392157, b: 0.2509803, a: 0.808}
+  m_BuildTextureStacks: []
