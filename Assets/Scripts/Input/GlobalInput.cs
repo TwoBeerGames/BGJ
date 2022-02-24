@@ -18,6 +18,14 @@ public class GlobalInput : MonoBehaviour
     {
         //StartCoroutine(init());
         masterInput = new MasterInput();
+        StartCoroutine(init());
+    }
+
+    IEnumerator init()
+    {
+        yield return new WaitForSeconds(.1f);
+
+
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -41,12 +49,5 @@ public class GlobalInput : MonoBehaviour
         masterInput.Movement.RightUp.performed += ctx => { rightDown = false; };
 
         masterInput.Mouse.MouseDelta.performed += ctx => { mouseDelta = ctx.ReadValue<Vector2>(); };
-    }
-
-    IEnumerator init()
-    {
-        yield return new WaitForSeconds(.1f);
-
-        
     }
 }
