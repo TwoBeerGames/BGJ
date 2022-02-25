@@ -16,12 +16,10 @@ public class MonsterController : MonoBehaviour
     [Header("Settings")]
     [Range(1f, 5f)]
     public float speedMultiplier = 1f;
-    [Range(0, 10f)]
+    [Range(0, 20f)]
     public float forwardVisionRange = 1f;
-    [Range(0, 10f)]
-    public float backwardVisionRange = 1f;
-    public LayerMask whatIsPlayer;
-    [Range(0, 90)]
+    public LayerMask whatIsRaycastable;
+    [Range(0, 180)]
     public float visionConeAngle = 45;
     public int scanRows = 3;
     public int samplesPerRow = 12;
@@ -31,8 +29,40 @@ public class MonsterController : MonoBehaviour
     const string patrolingState = "1";
     const string aggroState = "1";
     const string idleAnimation = "IdleSniffleAround";
+    public bool playerInPerceptionRange = false;
 
     float initialSpeed = 0;
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == 7)
+        {
+            playerInPerceptionRange = true;
+            currentState = aggroState;
+            currentTarget.position = other.transform.position;
+
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.layer == 7)
+        {
+            playerInPerceptionRange = false;
+            currentState = aggroState;
+            currentTarget.position = other.transform.position;
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.layer == 7)
+        {
+            playerInPerceptionRange = true;
+            currentState = aggroState;
+            currentTarget.position = other.transform.position;
+        }
+    }
 
     public void Start()
     {
@@ -60,7 +90,9 @@ public class MonsterController : MonoBehaviour
     }
     public void FixedUpdate()
     {
-        scan();
+        if (!playerInPerceptionRange)
+            scan();
+
         manageAnimation();
 
     }
@@ -99,11 +131,15 @@ public class MonsterController : MonoBehaviour
                 Vector3 currentRaycastDirection = Quaternion.AngleAxis(j * sampleStep + (i % 2) * sampleStep / 2, transform.forward) * currentRaycastVector;
                 Debug.DrawRay(scanOrigin.position, currentRaycastDirection * forwardVisionRange, Color.green, .1f);
 
-                if (Physics.Raycast(transform.position, currentRaycastDirection, out hit, forwardVisionRange, whatIsPlayer))
+                if (Physics.Raycast(transform.position, currentRaycastDirection, out hit, forwardVisionRange, whatIsRaycastable))
                 {
-                    currentState = aggroState;
-                    currentTarget.position = player.position;
-                    return;
+                    if (hit.transform.gameObject.layer == 7)
+                    {
+                        Debug.Log("hit");
+                        currentState = aggroState;
+                        currentTarget.position = player.position;
+                        return;
+                    }
                 }
             }
         }
@@ -178,7 +214,8 @@ public class MonsterController : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawSphere(currentTarget.position, 1f);
+        Gizmos.DrawLine(scanOrigin.position, scanOrigin.position + scanOrigin.forward * forwardVisionRange);
+        // Gizmos.DrawSphere(currentTarget.position, 1f);
     }
 
 }

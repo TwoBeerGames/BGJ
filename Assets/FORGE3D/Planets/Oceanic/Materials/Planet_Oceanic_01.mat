@@ -117,7 +117,7 @@ Material:
     - _CloudShadows: 0.176
     - _CloudsBlendWeight: 0.51
     - _CloudsBoost: 0.853
-    - _CloudsMiddleSpeed: 0.0008
+    - _CloudsMiddleSpeed: 0.002
     - _CloudsTopSpeed: -0.0023
     - _Cutoff: 0.5
     - _DesertCoverage: 0.055
@@ -185,3 +185,4 @@ Material:
     - _WaterShallowColor: {r: 0.31401384, g: 0.9705882, b: 0.3687283, a: 1}
     - _WaterShoreColor: {r: 0, g: 0, b: 0, a: 0}
     - _WaterSpecularColor: {r: 0.78676474, g: 0.92892164, b: 1, a: 1}
+  m_BuildTextureStacks: []

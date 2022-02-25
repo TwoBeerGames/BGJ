@@ -1,19 +1,25 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Weight")]
+    public float acceleration;
+    public float deceleration;
+    Vector3 _velocity = Vector3.zero;
     public Animator headAnimator;
     CharacterController cc;
     Vector3 movementVector = Vector3.zero;
-    public float movementSpeed;
+    public float maxSpeed;
     Vector3 initialRotation;
     Vector3 rotationOffset = Vector3.zero;
     Vector3 initialCameraAnchorRotation = Vector3.zero;
     Vector2 mouseDelta = Vector2.zero;
 
     public float mouseSensivity = 1f;
+
 
     public Transform cameraAnchor;
 
@@ -35,10 +41,33 @@ public class PlayerController : MonoBehaviour
     {
 
         createMovementVector();
+        calculateVelocity();
         setRotation();
 
-        cc.Move(movementVector * movementSpeed * Time.deltaTime + -Vector3.up);
 
+
+        cc.Move(_velocity * Time.deltaTime + -Vector3.up);
+
+    }
+
+    private void calculateVelocity()
+    {
+        if (movementVector != Vector3.zero)
+        {
+            _velocity += movementVector * Time.deltaTime * acceleration;
+            _velocity = Vector3.ClampMagnitude(_velocity, maxSpeed);
+        }
+        else
+        {
+            if (_velocity.magnitude > 0.01f)
+            {
+                _velocity *= Time.deltaTime * deceleration;
+            }
+            else
+            {
+                _velocity = Vector3.zero;
+            }
+        }
     }
 
     void setRotation()
@@ -69,9 +98,9 @@ public class PlayerController : MonoBehaviour
             movementVector += transform.right;
 
         if (movementVector != Vector3.zero)
-            headAnimator.Play("headbob");
+            headAnimator.CrossFadeInFixedTime("headbob", 1f, 0); //Play();
         else
-            headAnimator.Play("default");
+            headAnimator.CrossFadeInFixedTime("default", 1f, 0); //Play("default");
 
 
     }

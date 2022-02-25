@@ -81,7 +81,7 @@ Material:
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
-    - _DistortionFactor: 0.107
+    - _DistortionFactor: -0.19
     - _DistortionSpeed: 0.09
     - _DistortionTiling: 1
     - _DistortionUVSpeed: 0.01
@@ -90,8 +90,8 @@ Material:
     - _FlakesMult: 29.04
     - _FlakesPower: 0.89
     - _Float0: 0.4
-    - _FrenselMult: 0.47
-    - _FresnelPower: 1.37
+    - _FrenselMult: 1.79
+    - _FresnelPower: 2.11
     - _GMULT: 50
     - _GPOW: 1.45
     - _GlossMapScale: 1
@@ -138,3 +138,4 @@ Material:
     - _Hot: {r: 1, g: 0.40392143, b: 0, a: 0.101960786}
     - _LightningColor: {r: 1, g: 0.6964503, b: 0.46323526, a: 0}
     - _Warm: {r: 1, g: 0.6392157, b: 0.2509802, a: 0.808}
+  m_BuildTextureStacks: []

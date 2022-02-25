@@ -124,11 +124,11 @@ Material:
     - _DesertFactors: 10.2
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _FrenselLandMult: 1.57
-    - _FresnelLandPower: 0.8
+    - _FrenselLandMult: 1.43
+    - _FresnelLandPower: 4.1
     - _FresnelNormalScale: 0
-    - _FresnelWaterMult: 10
-    - _FresnelWaterPower: 1.8
+    - _FresnelWaterMult: 1.96
+    - _FresnelWaterPower: 4.9
     - _GlobalBoost: 2
     - _GlossMapScale: 1
     - _Glossiness: 0.5
@@ -178,3 +178,4 @@ Material:
     - _WaterShallowColor: {r: 0.50735295, g: 0.8573022, b: 1, a: 0}
     - _WaterShoreColor: {r: 0.17874134, g: 0.33954474, b: 0.41911763, a: 0}
     - _WaterSpecularColor: {r: 1, g: 0.9843813, b: 0.9191176, a: 1}
+  m_BuildTextureStacks: []

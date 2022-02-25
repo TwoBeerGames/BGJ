@@ -157,7 +157,7 @@ Material:
     - _LavaMaskFactorsY: 3.38
     - _LavaMaskPower: 4.3
     - _LavaMaskTiling: 1.29
-    - _LavaPasstrough: 0.05
+    - _LavaPasstrough: 0.0504
     - _MagmaBoost: 888
     - _MagmaFactorsW: 228
     - _MagmaFactorsZ: 1
@@ -173,13 +173,13 @@ Material:
     - _Parallax: 0.02
     - _ParallaxRefPlane: 1
     - _ParallaxScale: -0.16
-    - _ScatterBoost: 1
-    - _ScatterCenterShift: 0
+    - _ScatterBoost: 0.77
+    - _ScatterCenterShift: -0.07
     - _ScatterIndirect: 0.122
-    - _ScatterStretch: 1
-    - _Smoothness: 0.921
+    - _ScatterStretch: -0.65
+    - _Smoothness: 0.802
     - _SmoothnessTextureChannel: 0
-    - _Specular: 0.326
+    - _Specular: 0.301
     - _SpecularBoost: 1
     - _SpecularFalloff: 0
     - _SpecularHighlights: 1
@@ -197,7 +197,7 @@ Material:
     - _Color0: {r: 0.45588237, g: 0.16089965, b: 0.16089965, a: 0}
     - _Color1: {r: 0.77205884, g: 0.43144464, b: 0.43144464, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FresnelColor: {r: 0.7352941, g: 0.7352941, b: 0.7352941, a: 1}
+    - _FresnelColor: {r: 0.1792453, g: 0.1792453, b: 0.1792453, a: 1}
     - _FresnelLandColor: {r: 0.25, g: 0.20204106, b: 0.17830881, a: 0}
     - _LavaHigh: {r: 0.24999991, g: 0.19928995, b: 0.17647049, a: 0}
     - _LavaLow: {r: 0.30882344, g: 0.13624558, b: 0.13624558, a: 0}
@@ -206,6 +206,7 @@ Material:
     - _LavaMin: {r: 0.09450667, g: 0.20289916, b: 0.27941152, a: 0}
     - _MagmaColorMax: {r: 0.6397059, g: 0.34243056, b: 0.0940743, a: 0}
     - _MagmaColorMin: {r: 0.5588235, g: 0, b: 0, a: 0}
-    - _ScatterColor: {r: 1, g: 1, b: 1, a: 0}
+    - _ScatterColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecularColor: {r: 0.6397059, g: 0.4562608, b: 0.4562608, a: 0}
     - _SpecularTint: {r: 0.058823265, g: 0.011245674, b: 0.011245674, a: 0}
+  m_BuildTextureStacks: []
