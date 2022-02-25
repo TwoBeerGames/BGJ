@@ -22,7 +22,6 @@ public class InteractionManager : MonoBehaviour
             if (inter != null)
             {
                 inter.interact();
-                Debug.Log("yes interaction, indeed");
             }
         }
     }

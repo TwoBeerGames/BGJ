@@ -97,11 +97,5 @@ public class PlayerController : MonoBehaviour
         if (GlobalInput.rightDown)
             movementVector += transform.right;
 
-        if (movementVector != Vector3.zero)
-            headAnimator.CrossFadeInFixedTime("headbob", 1f, 0); //Play();
-        else
-            headAnimator.CrossFadeInFixedTime("default", 1f, 0); //Play("default");
-
-
     }
 }

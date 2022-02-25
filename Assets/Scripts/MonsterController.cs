@@ -26,8 +26,8 @@ public class MonsterController : MonoBehaviour
     public float reevaluteTargetInterval = 4f;
     [Header("StateMachine")]
     public string currentState;
-    const string patrolingState = "1";
-    const string aggroState = "1";
+    public const string patrolingState = "1";
+    public const string aggroState = "2";
     const string idleAnimation = "IdleSniffleAround";
     public bool playerInPerceptionRange = false;
 
@@ -129,13 +129,13 @@ public class MonsterController : MonoBehaviour
             for (int j = 0; j < samplesPerRow; j++)
             {
                 Vector3 currentRaycastDirection = Quaternion.AngleAxis(j * sampleStep + (i % 2) * sampleStep / 2, transform.forward) * currentRaycastVector;
-                Debug.DrawRay(scanOrigin.position, currentRaycastDirection * forwardVisionRange, Color.green, .1f);
+                //Debug.DrawRay(scanOrigin.position, currentRaycastDirection * forwardVisionRange, Color.green, .1f);
 
                 if (Physics.Raycast(transform.position, currentRaycastDirection, out hit, forwardVisionRange, whatIsRaycastable))
                 {
                     if (hit.transform.gameObject.layer == 7)
                     {
-                        Debug.Log("hit");
+                        //Debug.Log("hit");
                         currentState = aggroState;
                         currentTarget.position = player.position;
                         return;
@@ -215,7 +215,8 @@ public class MonsterController : MonoBehaviour
     {
         Gizmos.color = Color.green;
         Gizmos.DrawLine(scanOrigin.position, scanOrigin.position + scanOrigin.forward * forwardVisionRange);
-        // Gizmos.DrawSphere(currentTarget.position, 1f);
+         Gizmos.color = Color.red;
+        Gizmos.DrawSphere(currentTarget.position, 1f);
     }
 
 }
