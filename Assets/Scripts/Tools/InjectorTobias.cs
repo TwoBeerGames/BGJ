@@ -2,14 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class InjectorTobias : Tool
 {
     [Header("References")]
-    public Text ammoText;
-    public Text slashText;
-    public Text maxAmmoText;
+    public GameObject icon;
+    public GameObject ammoText;
+    public GameObject seperator;
+    public GameObject maxAmmoText;
     
     [Header("Properties")]
     public int maxAmmo = 3;
@@ -21,14 +22,14 @@ public class InjectorTobias : Tool
         GlobalInput.masterInput.Mouse.LeftClick.performed += Inject;
 
         // Ammo Handling
-        if (ammoText && slashText && maxAmmoText) {
+        if (ammoText && seperator && maxAmmoText) {
             // Show Ammo UI
             changeActiveState(true);
 
             // Set Ammo values
             if (ammo == null) ammo = maxAmmo;
-            ammoText.text = ammo.ToString();
-            maxAmmoText.text = maxAmmo.ToString();
+            ammoText.GetComponent<TMPro.TextMeshProUGUI>().text = ammo.ToString();
+            maxAmmoText.GetComponent<TMPro.TextMeshProUGUI>().text = maxAmmo.ToString();
         }
     }
 
@@ -37,7 +38,7 @@ public class InjectorTobias : Tool
         GlobalInput.masterInput.Mouse.LeftClick.performed -= Inject;
 
         // Hide Ammo UI
-        if (ammoText && slashText && maxAmmoText) {
+        if (ammoText && seperator && maxAmmoText) {
             changeActiveState(false);
         }
     }
@@ -51,13 +52,14 @@ public class InjectorTobias : Tool
 
             // Ammo Handling
             ammo--;
-            ammoText.text = ammo.ToString();
+            ammoText.GetComponent<TMPro.TextMeshProUGUI>().text = ammo.ToString();
         }
     }
 
     void changeActiveState(bool state) {
-        ammoText.gameObject.SetActive(state);
-        slashText.gameObject.SetActive(state);
-        maxAmmoText.gameObject.SetActive(state);
+        icon.SetActive(state);
+        ammoText.SetActive(state);
+        seperator.SetActive(state);
+        maxAmmoText.SetActive(state);
     }
 }
