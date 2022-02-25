@@ -14,17 +14,17 @@ namespace Michsky.UI.Zone
 
         void Update()
         {
-            float h = Input.GetAxis(horizontalAxis);
+            // float h = Input.GetAxis(horizontalAxis);
 
-            if (h == 1)
-            {
-                sliderObject.value += changeValue;
-            }
+            // if (h == 1)
+            // {
+            //     sliderObject.value += changeValue;
+            // }
 
-            else if (h == -1)
-            {
-                sliderObject.value -= changeValue;
-            }
+            // else if (h == -1)
+            // {
+            //     sliderObject.value -= changeValue;
+            // }
         }
     }
 }
