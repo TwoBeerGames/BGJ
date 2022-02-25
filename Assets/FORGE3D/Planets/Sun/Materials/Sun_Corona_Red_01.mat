@@ -91,19 +91,19 @@ Material:
     - _Boost: 6.24
     - _BumpScale: 1
     - _CoronaAmp: 1.25
-    - _CoronaBoost: 49.41
-    - _CoronaExp: 2.86
+    - _CoronaBoost: 49.52
+    - _CoronaExp: 2.4
     - _CoronaFalloff: 3.4
-    - _CoronaFluidInfluence: 2.72
-    - _CoronaFluidTile: 0.24
-    - _CoronaSpeed: 0.2
-    - _CoronaTileX: 3
-    - _CoronaTileY: 1.69
+    - _CoronaFluidInfluence: 2.86
+    - _CoronaFluidTile: 0.36
+    - _CoronaSpeed: 0.47
+    - _CoronaTileX: -1.9
+    - _CoronaTileY: 1.5
     - _Cutoff: 0.5
     - _DepthFade: 2091.44
     - _DetailNormalMapScale: 1
-    - _DischargePanSpeed: 1.01
-    - _DischargeTileX: 14.32
+    - _DischargePanSpeed: 0.3
+    - _DischargeTileX: 14.44
     - _DischargeTileY: 1.8
     - _DistortionFactor: 0.107
     - _DistortionSpeed: 0.09
@@ -143,8 +143,8 @@ Material:
     - _RMULt: 21.28
     - _RPOW: 0
     - _SmoothnessTextureChannel: 0
-    - _SolarStormFalloff: 5.8
-    - _SolarStormPower: 110.8
+    - _SolarStormFalloff: 5.95
+    - _SolarStormPower: 111.49
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _SunGTiling: 2.54
