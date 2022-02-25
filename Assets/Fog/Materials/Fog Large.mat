@@ -11,7 +11,7 @@ Material:
   m_Shader: {fileID: 4800000, guid: e2827a6f24924db42b3a9db29b90337d, type: 3}
   m_ShaderKeywords: _ALPHABLEND_ON _FADING_ON
   m_LightmapFlags: 0
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -76,8 +76,8 @@ Material:
     - _BlendOp: 0
     - _BumpScale: 1
     - _CameraDepthFadeDistance: 1
-    - _CameraDepthFadeOffset: 7.52
-    - _CameraDepthFadeRange: 3
+    - _CameraDepthFadeOffset: 0
+    - _CameraDepthFadeRange: 9.71
     - _CameraDepthFadeStart: 0
     - _CameraFadingEnabled: 1
     - _CameraFarFadeDistance: 2
@@ -105,9 +105,9 @@ Material:
     - _Parallax: 0.02
     - _QueueControl: -1
     - _QueueOffset: 0
-    - _SimpleNoiseAmount: 0.522
+    - _SimpleNoiseAmount: 0.513
     - _SimpleNoiseRemap: 0.252
-    - _SimpleNoiseScale: 20
+    - _SimpleNoiseScale: 15.4
     - _SimplexNoiseAmount: 0.353
     - _SimplexNoiseRemap: 0.5
     - _SimplexNoiseScale: 6.65
@@ -125,12 +125,12 @@ Material:
     - _ZWrite: 0
     - __dirty: 0
     m_Colors:
-    - _Albedo: {r: 1, g: 1, b: 1, a: 1}
+    - _Albedo: {r: 0.4811321, g: 0.4811321, b: 0.4811321, a: 1}
     - _CameraFadeParams: {r: 1, g: 1, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _SimpleNoiseAnimation: {r: -0.1, g: 0.05, b: 0, a: 0}
-    - _SimplexNoiseAnimation: {r: 0, g: 0, b: 0.01, a: 0}
+    - _SimpleNoiseAnimation: {r: 0, g: 0, b: 0, a: 0}
+    - _SimplexNoiseAnimation: {r: 0, g: 0, b: 0, a: 0}
     - _SoftParticleFadeParams: {r: 0, g: 1, b: 0, a: 0}
     - _VoronoiNoiseAnimation: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
