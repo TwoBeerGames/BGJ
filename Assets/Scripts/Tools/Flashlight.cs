@@ -58,15 +58,10 @@ public class Flashlight : Tool
 
     void switchLight(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-<<<<<<< HEAD
         if (!GlobalInput.isGamePaused()) {
             on = !on;
+            audioSource.Play();
             lightSource.gameObject.SetActive(on);
         }
-=======
-        on = !on;
-        audioSource.Play();
-        lightSource.gameObject.SetActive(on);
->>>>>>> 6e962b5d411e35f651efcfea6aef49b1a2394920
     }
 }
