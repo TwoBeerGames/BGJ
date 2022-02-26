@@ -120,8 +120,6 @@ public class MonsterController : MonoBehaviour
         float rowStep = visionConeAngle / 2 / scanRows;
         RaycastHit hit;
 
-
-
         for (int i = 0; i < scanRows; i++)
         {
             currentRaycastVector = Quaternion.AngleAxis(rowStep * i, transform.right) * scanOrigin.forward;
@@ -154,6 +152,8 @@ public class MonsterController : MonoBehaviour
         List<PointOfInterest> POIsnapshot = pointsOfInterest.GetRange(0, pointsOfInterest.Count);
 
         int size = 0;
+        int randomIndex = 0;
+
         foreach (PointOfInterest poi in POIsnapshot)
         {
             if (poi.isInRange)
@@ -164,10 +164,10 @@ public class MonsterController : MonoBehaviour
 
         }
 
-        if (currentActiveList.Count > 0)
+        if (currentActiveList.Count > 1)
         {
-            int randomIndex = Random.Range(0, size);
 
+            randomIndex = Random.Range(0, size);
             if (currentActiveList[randomIndex].transform != currentTarget)
             {
                 return currentActiveList[randomIndex].transform;
@@ -178,10 +178,12 @@ public class MonsterController : MonoBehaviour
             }
 
         }
+        else
+        {
+            randomIndex = Random.Range(0, pointsOfInterest.Count);
+            return pointsOfInterest[randomIndex].transform;
 
-        return null;
-
-
+        }
     }
 
     IEnumerator evaluateNewTarget()

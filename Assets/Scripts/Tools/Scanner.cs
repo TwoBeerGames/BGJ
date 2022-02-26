@@ -6,10 +6,12 @@ public class Scanner : Tool
 {
     public AudioSource audioSource;
     public AudioClip beep;
+    public GameObject hand;
 
     void OnEnable()
     {
         ScanInterval.ping.AddListener(doPing);
+        hand.SetActive(true);
     }
 
     void doPing()
@@ -20,5 +22,6 @@ public class Scanner : Tool
     void OnDisable()
     {
         ScanInterval.ping.RemoveListener(doPing);
+        hand.SetActive(false);
     }
 }
