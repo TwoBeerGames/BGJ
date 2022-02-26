@@ -26,7 +26,11 @@ public class MonsterAudio : MonoBehaviour
                 continue;
             }
             timeElapsed = 0f;
-            audioSource.PlayOneShot(clips[Random.Range(0, clips.Length)]);
+            Debug.Log("now is " + MonsterController.inst.currentState);
+            if (MonsterController.inst.currentState == MonsterController.aggroState)
+            {
+                audioSource.PlayOneShot(clips[Random.Range(0, clips.Length)]);
+            }
         }
     }
 }

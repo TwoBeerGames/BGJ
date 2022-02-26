@@ -6,13 +6,16 @@ public class Door : MonoBehaviour, IInteractable
 {
     public bool canInteract { get; set; }
     public Transform opened;
+    public Transform actualDoor;
     Vector3 closed;
     public bool open;
+    AudioSource audioSource;
     public float switchTime;
 
     void Start()
     {
-        closed = transform.position;
+        audioSource = GetComponent<AudioSource>();
+        closed = actualDoor.position;
         canInteract = true;
     }
 
@@ -21,23 +24,27 @@ public class Door : MonoBehaviour, IInteractable
         float switchTimeLeft = switchTime;
         canInteract = false;
 
+        
+        audioSource.Play();
+
         while (switchTimeLeft > 0)
         {
             switchTimeLeft -= Time.deltaTime;
             float progress = switchTimeLeft / switchTime;
 
             if (open)
-                transform.position = Vector3.Lerp(closed, opened.position, progress);
+                actualDoor.position = Vector3.Lerp(closed, opened.position, progress);
             else
-                transform.position = Vector3.Lerp(opened.position, closed, progress);
+                actualDoor.position = Vector3.Lerp(opened.position, closed, progress);
 
             yield return null;
         }
 
+
         if (open)
-            transform.position = closed;
+            actualDoor.position = closed;
         else
-            transform.position = opened.position;
+            actualDoor.position = opened.position;
 
         open = !open;
         canInteract = true;
