@@ -12,6 +12,7 @@ public class Flashlight : Tool
     public float power = 1f;
     public float wasteRate = 1f;
     private float initialIntensity;
+    public GameObject hand;
 
     // Start is called before the first frame update
     void Start()
@@ -49,11 +50,13 @@ public class Flashlight : Tool
     void OnEnable()
     {
         GlobalInput.masterInput.Mouse.LeftClick.performed += switchLight;
+        hand.SetActive(true);
     }
 
     void OnDisable()
     {
         GlobalInput.masterInput.Mouse.LeftClick.performed -= switchLight;
+        hand.SetActive(false);
     }
 
     void switchLight(UnityEngine.InputSystem.InputAction.CallbackContext obj)
