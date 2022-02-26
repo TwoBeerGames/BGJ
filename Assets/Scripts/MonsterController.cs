@@ -103,7 +103,7 @@ public class MonsterController : MonoBehaviour
         {
             monsterAnimator.speed = speedMultiplier;
             path.maxSpeed = initialSpeed * speedMultiplier;
-            playAnimation("RunForward");
+            playAnimation("walg");
         }
         else
         {
@@ -215,7 +215,7 @@ public class MonsterController : MonoBehaviour
     {
         Gizmos.color = Color.green;
         Gizmos.DrawLine(scanOrigin.position, scanOrigin.position + scanOrigin.forward * forwardVisionRange);
-         Gizmos.color = Color.red;
+        Gizmos.color = Color.red;
         Gizmos.DrawSphere(currentTarget.position, 1f);
     }
 

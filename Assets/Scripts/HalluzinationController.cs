@@ -5,70 +5,24 @@ using Pathfinding;
 
 public class HalluzinationController : MonoBehaviour
 {
-   public static MonsterController inst;
-    [Header("References")]
-    AIPath path;
-    public Animator monsterAnimator;
+    public AudioSource audioSource;
+    public static MonsterController inst;
+    public Animator halluzinationAnimator;
+    public GameObject halluzinationAgent;
+    public float speedIncrease;
+    public AIPath path;
     public List<PointOfInterest> pointsOfInterest = new List<PointOfInterest>();
     public Transform player;
-    public Transform scanOrigin;
-    public Transform currentTarget;
-    [Header("Settings")]
-    [Range(1f, 5f)]
-    public float speedMultiplier = 1f;
-    [Range(0, 20f)]
-    public float forwardVisionRange = 1f;
-    public LayerMask whatIsRaycastable;
-    [Range(0, 180)]
-    public float visionConeAngle = 45;
-    public int scanRows = 3;
-    public int samplesPerRow = 12;
-    public float reevaluteTargetInterval = 4f;
-    [Header("StateMachine")]
-    public string currentState;
-    public const string patrolingState = "1";
-    public const string aggroState = "2";
-    const string idleAnimation = "IdleSniffleAround";
-    public bool playerInPerceptionRange = false;
-
+    public float halluzinationInterval = 1f;
+    float initialAnimatorSpeed = 0f;
     float initialSpeed = 0;
+    public float maxAnimatorSpeed = 2;
 
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.layer == 7)
-        {
-            playerInPerceptionRange = true;
-            currentState = aggroState;
-            currentTarget.position = other.transform.position;
 
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.layer == 7)
-        {
-            playerInPerceptionRange = false;
-            currentState = aggroState;
-            currentTarget.position = other.transform.position;
-        }
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.layer == 7)
-        {
-            playerInPerceptionRange = true;
-            currentState = aggroState;
-            currentTarget.position = other.transform.position;
-        }
-    }
 
     public void Start()
     {
-        path = GetComponent<AIPath>();
-        currentTarget.position = transform.position;
-
+        initialAnimatorSpeed = halluzinationAnimator.speed;
 
         Transform POIroot = GameObject.Find("POIroot").transform;
 
@@ -77,75 +31,34 @@ public class HalluzinationController : MonoBehaviour
             pointsOfInterest.Add(child.transform.GetComponent<PointOfInterest>());
         }
 
-        currentState = patrolingState;
-        StartCoroutine(evaluateNewTarget());
-
-
         initialSpeed = path.maxSpeed;
     }
 
-    void playAnimation(string name)
+    public void Update()
     {
-        monsterAnimator.Play(name);
+        halluzinationAnimator.speed += Time.deltaTime * speedIncrease;
+        path.maxSpeed += Time.deltaTime * speedIncrease;
+
+        halluzinationAnimator.speed = Mathf.Clamp(halluzinationAnimator.speed, 0, maxAnimatorSpeed);
+    }
+
+    void OnDisable()
+    {
+        halluzinationAnimator.speed = initialAnimatorSpeed;
+        path.maxSpeed = initialSpeed;
+
     }
     public void FixedUpdate()
     {
-        if (!playerInPerceptionRange)
-            scan();
 
-        manageAnimation();
-
-    }
-
-    private void manageAnimation()
-    {
-        if (path.velocity.magnitude > .5f)
+        if (Vector3.Distance(halluzinationAgent.transform.position, player.position) < 1.5f && halluzinationAgent.activeInHierarchy)
         {
-            monsterAnimator.speed = speedMultiplier;
-            path.maxSpeed = initialSpeed * speedMultiplier;
-            playAnimation("RunForward");
-        }
-        else
-        {
-            path.maxSpeed = initialSpeed;
-            monsterAnimator.speed = 1f;
-            playAnimation(idleAnimation);
+            audioSource.Play();
+            halluzinationAgent.SetActive(false);
+            StartCoroutine(startHalluzniations());
         }
     }
 
-    void scan()
-    {
-        Vector3 currentRaycastVector = Vector3.zero;
-        float sampleStep = 360 / samplesPerRow;
-        float rowStep = visionConeAngle / 2 / scanRows;
-        RaycastHit hit;
-
-
-
-        for (int i = 0; i < scanRows; i++)
-        {
-            currentRaycastVector = Quaternion.AngleAxis(rowStep * i, transform.right) * scanOrigin.forward;
-
-            for (int j = 0; j < samplesPerRow; j++)
-            {
-                Vector3 currentRaycastDirection = Quaternion.AngleAxis(j * sampleStep + (i % 2) * sampleStep / 2, transform.forward) * currentRaycastVector;
-                //Debug.DrawRay(scanOrigin.position, currentRaycastDirection * forwardVisionRange, Color.green, .1f);
-
-                if (Physics.Raycast(transform.position, currentRaycastDirection, out hit, forwardVisionRange, whatIsRaycastable))
-                {
-                    if (hit.transform.gameObject.layer == 7)
-                    {
-                        //Debug.Log("hit");
-                        currentState = aggroState;
-                        currentTarget.position = player.position;
-                        return;
-                    }
-                }
-            }
-        }
-
-        currentState = patrolingState;
-    }
 
     Transform pickNewPOI()
     {
@@ -168,47 +81,23 @@ public class HalluzinationController : MonoBehaviour
         {
             int randomIndex = Random.Range(0, size);
 
-            if (currentActiveList[randomIndex].transform != currentTarget)
-            {
-                return currentActiveList[randomIndex].transform;
-            }
-            else
-            {
-                return pickNewPOI();
-            }
-
+            return currentActiveList[randomIndex].transform;
         }
 
         return null;
-
-
     }
 
-    IEnumerator evaluateNewTarget()
+    IEnumerator startHalluzniations()
     {
-        float timeElapsed = 0;
+        yield return new WaitForSecondsRealtime(Random.Range(halluzinationInterval, 2 * halluzinationInterval));
 
-        while (true)
+        Transform newTarget = pickNewPOI();
+
+        if (newTarget != null)
         {
-            if (timeElapsed <= reevaluteTargetInterval)
-            {
-                timeElapsed += Time.deltaTime;
-                yield return new WaitForEndOfFrame();
-                continue;
-            }
-
-            timeElapsed = 0;
-
-            if (currentState == patrolingState)
-            {
-                Transform newTarget = pickNewPOI();
-
-                if (newTarget != null)
-                    currentTarget.position = newTarget.position;
-
-                currentState = patrolingState;
-            }
+            halluzinationAgent.transform.position = newTarget.position;
+            halluzinationAgent.SetActive(true);
         }
     }
-
 }
+

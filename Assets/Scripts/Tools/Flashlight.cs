@@ -9,15 +9,41 @@ public class Flashlight : Tool
     [Header("Properties")]
     public bool on = false;
     public AudioSource audioSource;
+    public float power = 1f;
+    public float wasteRate = 1f;
+    private float initialIntensity;
+
     // Start is called before the first frame update
     void Start()
     {
         lightSource.gameObject.SetActive(false);
+        initialIntensity = lightSource.intensity;
 
         GlobalInput.masterInput.Mouse.LeftClick.performed += ctx =>
         {
 
         };
+    }
+
+    void Update()
+    {
+        if (on)
+            power -= wasteRate * Time.deltaTime;
+        else
+            power += wasteRate * Time.deltaTime;
+
+        power = Mathf.Clamp(power, 0f, 1f);
+
+        lightSource.intensity = initialIntensity * power;
+
+        if (power <= 0)
+        {
+            on = false;
+            lightSource.gameObject.SetActive(on);
+        }
+
+
+
     }
 
     void OnEnable()
