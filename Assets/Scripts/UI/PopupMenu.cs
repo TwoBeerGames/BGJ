@@ -8,7 +8,6 @@ public class PopupMenu : MonoBehaviour
 {
     public ModalWindowManager popupMenu;
     private bool popupMenuOpen = false;
-    private bool sceenLoaded = false;
 
     void Start() {
         GlobalInput.masterInput.Menu.Escape.performed += ctx => toggleVisibility();
@@ -20,15 +19,18 @@ public class PopupMenu : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             popupMenuOpen = true;
+            Time.timeScale = 0;
         } else {
             popupMenu.CloseWindow();
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             popupMenuOpen = false;
+            Time.timeScale = 1;
         }
     }
 
-    public void goBackToMainMenu() {
-        SceneManager.LoadScene(0);
+    public void QuitGame() {
+        Debug.Log("Quit");
+        Application.Quit();
     }
 }

@@ -6,6 +6,7 @@ using Michsky.UI.ModernUIPack;
 public class VolumeSliderManager : MonoBehaviour
 {
     public AudioManager audioManager;
+
     public void handleMasterVolume() {
         SliderManager slider = gameObject.GetComponent<SliderManager>();
         audioManager.setMasterVolume(slider.mainSlider.value);

@@ -7,7 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     bool sceenLoaded = false;
 
-    public void PlayGame() {
+    public void playGame() {
         int sceneCount = SceneManager.sceneCountInBuildSettings;
         if (sceenLoaded == false && sceneCount > 1 ) {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
@@ -15,7 +15,7 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    public void QuitGame() {
+    public void quitGame() {
         Debug.Log("Quit");
         Application.Quit();
     }

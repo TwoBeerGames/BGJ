@@ -48,7 +48,8 @@ public class ToolSwitch : MonoBehaviour
                 }
             }
 
-            if (previousSelectedItem != selectedItem) SelectItem();
+            if (previousSelectedItem != selectedItem && !GlobalInput.isGamePaused())
+                SelectItem();
         }
     }
 
