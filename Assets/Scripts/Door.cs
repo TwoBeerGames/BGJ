@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Door : MonoBehaviour, IInteractable
 {
-    public bool canInteract { get; set; }
+    public bool canInteract { get; set; } = true;
     public Transform opened;
     public Transform actualDoor;
     Vector3 closed;
@@ -16,7 +16,6 @@ public class Door : MonoBehaviour, IInteractable
     {
         audioSource = GetComponent<AudioSource>();
         closed = actualDoor.position;
-        canInteract = true;
     }
 
     IEnumerator switchState()

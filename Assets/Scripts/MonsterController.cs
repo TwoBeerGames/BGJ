@@ -37,11 +37,12 @@ public class MonsterController : MonoBehaviour
     {
         if (other.gameObject.layer == 7)
         {
-            playerInPerceptionRange = true;
-            currentState = aggroState;
-            currentTarget.position = other.transform.position;
-
-        }
+            // playerInPerceptionRange = true;
+            // currentState = aggroState;
+            // currentTarget.position = other.transform.position;
+            Debug.Log("KILL");
+            PlayerController.inst.die();
+        }   
     }
 
     void OnTriggerExit(Collider other)

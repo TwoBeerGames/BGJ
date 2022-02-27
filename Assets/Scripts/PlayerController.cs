@@ -2,10 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Animancer;
 
 public class PlayerController : MonoBehaviour
 {
     [Header("Weight")]
+
     public float acceleration;
     public float deceleration;
     Vector3 _velocity = Vector3.zero;
@@ -19,9 +21,15 @@ public class PlayerController : MonoBehaviour
     Vector2 mouseDelta = Vector2.zero;
 
     public float mouseSensivity = 1f;
-
+    static bool dead = false;
+    public static PlayerController inst;
 
     public Transform cameraAnchor;
+    [Header("Headbob")]
+    public AnimancerComponent animancer;
+    public AnimationClip bob;
+    public AnimationClip nothing;
+    Vector3 initialPosition;
 
 
     // Start is called before the first frame update
@@ -30,9 +38,11 @@ public class PlayerController : MonoBehaviour
         GlobalInput.masterInput.Mouse.MouseDelta.performed += ctx => { mouseDelta = ctx.ReadValue<Vector2>(); };
 
         initialRotation = transform.rotation.eulerAngles;
+        initialPosition = transform.position;
         initialCameraAnchorRotation = cameraAnchor.localRotation.eulerAngles;
 
         cc = GetComponent<CharacterController>();
+        inst = this;
 
     }
 
@@ -97,5 +107,34 @@ public class PlayerController : MonoBehaviour
         if (GlobalInput.rightDown)
             movementVector += transform.right;
 
+        if (movementVector == Vector3.zero)
+        {
+            animancer.Play(nothing, 0.25f);
+        }
+        else
+        {
+            var state = animancer.Play(bob, 0.25f);
+            state.Speed = .25f;
+        }
+
+
+    }
+
+    public void die()
+    {
+        if (!dead)
+        {
+            dead = true;
+            respawn();
+        }
+    }
+
+    public void respawn()
+    {   
+        dead = false;
+        gameObject.SetActive(false);
+        transform.position = initialPosition;
+        transform.rotation = Quaternion.Euler(initialRotation);
+        gameObject.SetActive(true);
     }
 }
