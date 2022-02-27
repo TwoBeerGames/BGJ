@@ -14,7 +14,7 @@ public class MonsterController : MonoBehaviour
     public Transform scanOrigin;
     public Transform currentTarget;
     [Header("Settings")]
-    [Range(1f, 5f)]
+    [Range(0f, 5f)]
     public float speedMultiplier = 1f;
     [Range(0, 20f)]
     public float forwardVisionRange = 1f;
@@ -37,12 +37,16 @@ public class MonsterController : MonoBehaviour
     {
         if (other.gameObject.layer == 7)
         {
-            // playerInPerceptionRange = true;
-            // currentState = aggroState;
-            // currentTarget.position = other.transform.position;
-            Debug.Log("KILL");
-            PlayerController.inst.die();
-        }   
+            StartCoroutine(performDeath());
+        }
+    }
+    IEnumerator performDeath()
+    {
+        PlayerController.inst.scream();
+        Fader.inst.goBlack(.3f);
+        yield return new WaitForSecondsRealtime(2f);
+        PlayerController.die.Invoke();
+        currentTarget.position = pickNewPOI().position;
     }
 
     void OnTriggerExit(Collider other)
@@ -50,16 +54,6 @@ public class MonsterController : MonoBehaviour
         if (other.gameObject.layer == 7)
         {
             playerInPerceptionRange = false;
-            currentState = aggroState;
-            currentTarget.position = other.transform.position;
-        }
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.layer == 7)
-        {
-            playerInPerceptionRange = true;
             currentState = aggroState;
             currentTarget.position = other.transform.position;
         }
@@ -91,13 +85,16 @@ public class MonsterController : MonoBehaviour
     }
     public void FixedUpdate()
     {
-        if (!playerInPerceptionRange)
-            scan();
+        scan();
 
         manageAnimation();
 
     }
 
+    private void OnEnable()
+    {
+        StartCoroutine(evaluateNewTarget());
+    }
     private void manageAnimation()
     {
         if (path.velocity.magnitude > .5f)
@@ -132,7 +129,7 @@ public class MonsterController : MonoBehaviour
 
                 if (Physics.Raycast(transform.position, currentRaycastDirection, out hit, forwardVisionRange, whatIsRaycastable))
                 {
-                    if (hit.transform.gameObject.layer == 7)
+                    if (hit.transform.gameObject.layer == 7 || hit.transform.gameObject.layer == 13)
                     {
                         //Debug.Log("hit");
                         currentState = aggroState;

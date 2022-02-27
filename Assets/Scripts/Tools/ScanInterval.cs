@@ -9,7 +9,7 @@ public class ScanInterval : MonoBehaviour
     public Camera cam;
     public float interval = 1f;
     // Start is called before the first frame update
-    void Awake()
+    void OnEnable()
     {
         StartCoroutine(beginPulse());
     }

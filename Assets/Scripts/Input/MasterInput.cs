@@ -313,8 +313,8 @@ public class @MasterInput : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""3a11aa91-26c3-4190-af7a-f5c0013a43d3"",
-                    ""path"": ""<Keyboard>/1"",
-                    ""interactions"": """",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": ""Press(pressPoint=0.2)"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Escape"",

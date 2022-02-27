@@ -7,7 +7,7 @@ public class Flashlight : Tool
     [Header("References")]
     public Light lightSource;
     [Header("Properties")]
-    public bool on = false;
+    public static bool on = false;
     public AudioSource audioSource;
     public float power = 1f;
     public float wasteRate = 1f;
@@ -42,9 +42,6 @@ public class Flashlight : Tool
             on = false;
             lightSource.gameObject.SetActive(on);
         }
-
-
-
     }
 
     void OnEnable()

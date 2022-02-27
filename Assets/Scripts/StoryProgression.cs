@@ -8,6 +8,8 @@ public class StoryProgression : MonoBehaviour
     public static UnityEvent progressionUpdate = new UnityEvent();
     public int audioLogsFound = 0;
     public GameObject evilman;
+    public GameObject escape;
+    public static StoryProgression inst;
 
     public GameObject hangarGate;
     public Door hangarDoor;
@@ -15,6 +17,7 @@ public class StoryProgression : MonoBehaviour
     public AudioLog i_evilman;
     void Start()
     {
+        inst = this;
         progressionUpdate.AddListener(progressStory);
         evilman.SetActive(false);
         hangarDoor.canInteract = false;
@@ -31,6 +34,17 @@ public class StoryProgression : MonoBehaviour
         {
             hangarDoor.canInteract = true;
             hangarGate.SetActive(false);
+            escape.SetActive(true);
         }
+    }
+
+    public void reset(){
+        evilman.SetActive(false);
+         hangarDoor.canInteract = false;
+         hangarGate.SetActive(true);
+         escape.SetActive(false);
+         audioLogsFound = 0;
+         sarah.reset();
+         i_evilman.reset();
     }
 }

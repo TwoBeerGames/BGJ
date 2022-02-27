@@ -3,11 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Animancer;
+using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
     [Header("Weight")]
 
+    public static UnityEvent die = new UnityEvent();
     public float acceleration;
     public float deceleration;
     Vector3 _velocity = Vector3.zero;
@@ -29,12 +31,15 @@ public class PlayerController : MonoBehaviour
     public AnimancerComponent animancer;
     public AnimationClip bob;
     public AnimationClip nothing;
+    public AudioClip deathScream;
+    public AudioSource audioSource;
     Vector3 initialPosition;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        die.AddListener(Die);
         GlobalInput.masterInput.Mouse.MouseDelta.performed += ctx => { mouseDelta = ctx.ReadValue<Vector2>(); };
 
         initialRotation = transform.rotation.eulerAngles;
@@ -60,6 +65,10 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    void OnEnable()
+    {
+        Fader.inst.clear();
+    }
     private void calculateVelocity()
     {
         if (movementVector != Vector3.zero)
@@ -79,6 +88,8 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+
 
     void setRotation()
     {
@@ -120,7 +131,11 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public void die()
+    public void scream()
+    {
+        audioSource.PlayOneShot(deathScream);
+    }
+    public void Die()
     {
         if (!dead)
         {
@@ -130,7 +145,8 @@ public class PlayerController : MonoBehaviour
     }
 
     public void respawn()
-    {   
+    {
+        StoryProgression.inst.reset();
         dead = false;
         gameObject.SetActive(false);
         transform.position = initialPosition;

@@ -32,7 +32,11 @@ public class HalluzinationController : MonoBehaviour
         }
 
         initialSpeed = path.maxSpeed;
+
+        StartCoroutine(delay());
     }
+
+  
 
     public void Update()
     {
@@ -50,7 +54,6 @@ public class HalluzinationController : MonoBehaviour
     }
     public void FixedUpdate()
     {
-
         if (Vector3.Distance(halluzinationAgent.transform.position, player.position) < 1.5f && halluzinationAgent.activeInHierarchy)
         {
             audioSource.Play();
@@ -98,6 +101,13 @@ public class HalluzinationController : MonoBehaviour
             halluzinationAgent.transform.position = newTarget.position;
             halluzinationAgent.SetActive(true);
         }
+    }
+
+    IEnumerator delay()
+    {
+        halluzinationAgent.gameObject.SetActive(false);
+        yield return new WaitForSecondsRealtime(halluzinationInterval);
+        halluzinationAgent.gameObject.SetActive(true);
     }
 }
 

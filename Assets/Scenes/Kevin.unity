@@ -493,7 +493,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1002007640824100, guid: 1961bbe6cf6e7284a98762c4eae95ea8, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4066134055731562, guid: 1961bbe6cf6e7284a98762c4eae95ea8, type: 3}
       propertyPath: m_RootOrder
@@ -1369,7 +1369,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 916708681614907305, guid: f6b366a42b3a0a842acd2450af121d8c, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 916708681614907305, guid: f6b366a42b3a0a842acd2450af121d8c, type: 3}
       propertyPath: m_TagString
@@ -4859,7 +4859,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1993310174753704, guid: e31d17d6183c7c04fbf09bcda1466cbb, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4570730935576664, guid: e31d17d6183c7c04fbf09bcda1466cbb, type: 3}
       propertyPath: m_RootOrder
@@ -5280,7 +5280,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &395473888
 Transform:
   m_ObjectHideFlags: 0
@@ -5633,7 +5633,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1074200589535813776, guid: f98ee79337e7b8c49ba4e85ff19ba014, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4262535831673858328, guid: f98ee79337e7b8c49ba4e85ff19ba014, type: 3}
       propertyPath: m_IsActive
@@ -7216,7 +7216,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &807211061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8175,7 +8175,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1010739981
 Transform:
   m_ObjectHideFlags: 0
@@ -8473,6 +8473,10 @@ MonoBehaviour:
   unlocked: 1
   lightSource: {fileID: 1079581172}
   on: 0
+  audioSource: {fileID: 0}
+  power: 1
+  wasteRate: 1
+  hand: {fileID: 0}
 --- !u!1 &1110595554
 GameObject:
   m_ObjectHideFlags: 0
@@ -9695,6 +9699,7 @@ MonoBehaviour:
   unlocked: 1
   audioSource: {fileID: 1286813238}
   beep: {fileID: 8300000, guid: 752d5c8e6575b5149995e1bed3cfebda, type: 3}
+  hand: {fileID: 0}
 --- !u!1 &1289374577
 GameObject:
   m_ObjectHideFlags: 0
@@ -11051,6 +11056,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   opened: {fileID: 1358261441}
+  actualDoor: {fileID: 0}
   open: 0
   switchTime: 1
 --- !u!65 &1679940274
@@ -11317,6 +11323,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 129046994}
+  interactUI: {fileID: 0}
+  wad: {fileID: 0}
   interactRange: 3
   whatIsInteractable:
     serializedVersion: 2
@@ -11467,6 +11475,11 @@ MonoBehaviour:
   maxSpeed: 5.3
   mouseSensivity: 15
   cameraAnchor: {fileID: 2098663492}
+  animancer: {fileID: 0}
+  bob: {fileID: 0}
+  nothing: {fileID: 0}
+  deathScream: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!143 &1715759733
 CharacterController:
   m_ObjectHideFlags: 0
@@ -13513,7 +13526,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2075417299
 Transform:
   m_ObjectHideFlags: 0
@@ -13834,7 +13847,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!135 &2146150571
 SphereCollider:
   m_ObjectHideFlags: 0
