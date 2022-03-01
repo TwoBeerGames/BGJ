@@ -48,7 +48,9 @@ public class HalluzinationController : MonoBehaviour
 
     void OnDisable()
     {
-        halluzinationAnimator.speed = initialAnimatorSpeed;
+        if (halluzinationAnimator) {
+            halluzinationAnimator.speed = initialAnimatorSpeed;
+        }
         path.maxSpeed = initialSpeed;
 
     }
