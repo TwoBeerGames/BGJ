@@ -33,9 +33,13 @@ namespace Michsky.UI.ModernUIPack
         RectTransform tooltipZHelper;
         [HideInInspector] public LayoutElement contentLE;
 
-        void Start()
+        void Awake()
         {
             RectTransform sourceRect = gameObject.GetComponent<RectTransform>();
+
+            if (sourceRect == null)
+                return;
+
             sourceRect.anchorMin = new Vector2(0, 0);
             sourceRect.anchorMax = new Vector2(1, 1);
             sourceRect.offsetMin = new Vector2(0, 0);

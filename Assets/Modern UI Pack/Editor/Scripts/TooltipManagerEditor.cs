@@ -63,7 +63,7 @@ namespace Michsky.UI.ModernUIPack
                     MUIPEditorHandler.DrawProperty(hBorderLeft, customSkin, "Left Bound");
                     MUIPEditorHandler.DrawProperty(hBorderRight, customSkin, "Right Bound");
 
-                    if (tooltipTarget.tooltipObject.GetComponent<CanvasGroup>().alpha == 0)
+                    if (tooltipTarget.tooltipObject != null && tooltipTarget.tooltipObject.GetComponent<CanvasGroup>().alpha == 0)
                     {
                         if (GUILayout.Button("Make It Visible", customSkin.button))
                         {

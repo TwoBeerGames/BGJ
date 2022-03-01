@@ -1,77 +1,107 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using TMPro;
+#if ENABLE_INPUT_SYSTEM
+using UnityEngine.InputSystem;
+#endif
 
-namespace Michsky.UI.Zone
+namespace Michsky.UI.ModernUIPack
 {
+    [RequireComponent(typeof(TMP_InputField))]
+    [RequireComponent(typeof(Animator))]
     public class CustomInputField : MonoBehaviour
     {
-        [Header("ANIMATORS")]
+        [Header("Resources")]
+        public TMP_InputField inputText;
         public Animator inputFieldAnimator;
 
-        [Header("OBJECTS")]
-        public GameObject fieldTrigger;
-        public TMP_InputField inputText;
+        [Header("Settings")]
+        public bool processSubmit = false;
 
-        // [Header("SETTINGS")]
-        private bool isEmpty = true;
-        private bool isClicked = false;
+        [Header("Events")]
+        public UnityEvent onSubmit;
+
+        // Hidden variables
         private string inAnim = "In";
         private string outAnim = "Out";
+        private string instaInAnim = "Instant In";
+        private string instaOutAnim = "Instant Out";
 
-        void Start()
+        void Awake()
         {
-            // Check if text is empty or not
-            if (inputText.text.Length == 0 || inputText.text.Length <= 0)
-                isEmpty = true;
+            if (inputText == null) { inputText = gameObject.GetComponent<TMP_InputField>(); }
+            if (inputFieldAnimator == null) { inputFieldAnimator = gameObject.GetComponent<Animator>(); }
 
-            else
-                isEmpty = false;
+            inputText.onSelect.AddListener(delegate { AnimateIn(); });
+            inputText.onEndEdit.AddListener(delegate { AnimateOut(); });
+            UpdateStateInstant();
+        }
 
-            // Animate if it's empty
-            if (isEmpty == true)
-                inputFieldAnimator.Play(outAnim);
+        void OnEnable()
+        {
+            if (inputText == null)
+                return;
 
-            else
-                inputFieldAnimator.Play(inAnim);
+            inputText.ForceLabelUpdate();
+            UpdateStateInstant();
+
+            if (gameObject.activeInHierarchy == true) { StartCoroutine("DisableAnimator"); }
         }
 
         void Update()
         {
-            if (inputText.text.Length == 1 || inputText.text.Length >= 1)
+            if (processSubmit == false ||
+                string.IsNullOrEmpty(inputText.text) == true ||
+                EventSystem.current.currentSelectedGameObject != inputText.gameObject)
+            { return; }
+
+#if ENABLE_LEGACY_INPUT_MANAGER
+            if (Input.GetKeyDown(KeyCode.Return)) { onSubmit.Invoke(); inputText.text = ""; }
+#elif ENABLE_INPUT_SYSTEM
+            if (Keyboard.current.enterKey.wasPressedThisFrame) { onSubmit.Invoke(); }
+#endif
+        }
+
+        public void AnimateIn() 
+        {
+            StopCoroutine("DisableAnimator");
+         
+            if (inputFieldAnimator.gameObject.activeInHierarchy == true) 
             {
-                isEmpty = false;
+                inputFieldAnimator.enabled = true;
                 inputFieldAnimator.Play(inAnim);
-            }
-
-            else if (isClicked == false)
-            {
-                inputFieldAnimator.Play(outAnim);
+                StartCoroutine("DisableAnimator");
             }
         }
 
-        public void Animate()
+        public void AnimateOut()
         {
-            isClicked = true;
-            inputFieldAnimator.Play(inAnim);
-            fieldTrigger.SetActive(true);
+            if (inputFieldAnimator.gameObject.activeInHierarchy == true)
+            {
+                inputFieldAnimator.enabled = true;
+                if (inputText.text.Length == 0) { inputFieldAnimator.Play(outAnim); }
+                StartCoroutine("DisableAnimator");
+            }
         }
 
-        public void FieldTrigger()
+        public void UpdateState()
         {
-            if (isEmpty == true)
-            {
-                inputFieldAnimator.Play(outAnim);
-                fieldTrigger.SetActive(false);
-                isClicked = false;
-            }
+            if (inputText.text.Length == 0) { AnimateOut(); }
+            else { AnimateIn(); }
+        }
 
-            else
-            {
-                fieldTrigger.SetActive(false);
-                isClicked = false;
-            }
+        public void UpdateStateInstant()
+        {
+            if (inputText.text.Length == 0) { inputFieldAnimator.Play(instaOutAnim); }
+            else { inputFieldAnimator.Play(instaInAnim); }
+        }
+
+        IEnumerator DisableAnimator()
+        {
+            yield return new WaitForSeconds(1);
+            inputFieldAnimator.enabled = false;
         }
     }
 }

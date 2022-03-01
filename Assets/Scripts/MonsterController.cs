@@ -47,6 +47,7 @@ public class MonsterController : MonoBehaviour
         yield return new WaitForSecondsRealtime(2f);
         PlayerController.die.Invoke();
         currentTarget.position = pickNewPOI().position;
+        MonsterDelay.inst.respawn();
     }
 
     void OnTriggerExit(Collider other)
@@ -95,6 +96,7 @@ public class MonsterController : MonoBehaviour
     {
         StartCoroutine(evaluateNewTarget());
     }
+
     private void manageAnimation()
     {
         if (path.velocity.magnitude > .5f)
