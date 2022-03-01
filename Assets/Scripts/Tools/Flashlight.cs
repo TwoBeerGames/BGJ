@@ -6,42 +6,36 @@ public class Flashlight : Tool
 {
     [Header("References")]
     public Light lightSource;
-    [Header("Properties")]
-    public static bool on = false;
     public AudioSource audioSource;
-    public float power = 1f;
-    public float wasteRate = 1f;
-    private float initialIntensity;
     public GameObject hand;
+    public static bool on = false;
+    // public float power = 1f;
+    // public float wasteRate = 1f;
+    // private float initialIntensity;
 
     // Start is called before the first frame update
     void Start()
     {
         lightSource.gameObject.SetActive(false);
-        initialIntensity = lightSource.intensity;
-
-        GlobalInput.masterInput.Mouse.LeftClick.performed += ctx =>
-        {
-
-        };
+        // initialIntensity = lightSource.intensity;
     }
 
     void Update()
     {
-        if (on)
-            power -= wasteRate * Time.deltaTime;
-        else
-            power += wasteRate * Time.deltaTime;
+        // if (on)
+        //     power -= wasteRate * Time.deltaTime;
+        // else
+        //     power += wasteRate * Time.deltaTime;
 
-        power = Mathf.Clamp(power, 0f, 1f);
+        // power = Mathf.Clamp(power, 0f, 1f);
 
-        lightSource.intensity = initialIntensity * power;
+        // lightSource.intensity = initialIntensity * power;
 
-        if (power <= 0)
-        {
-            on = false;
-            lightSource.gameObject.SetActive(on);
-        }
+        // if (power <= 0)
+        // {
+        //     on = false;
+        //     lightSource.gameObject.SetActive(on);
+        // }
     }
 
     void OnEnable()
