@@ -18,7 +18,7 @@ public class ToolSway : MonoBehaviour
     {
         offset += new Vector3(GlobalInput.mouseDelta.y * -intensity * Time.deltaTime, GlobalInput.mouseDelta.x * intensity * Time.deltaTime, 0f);
         offset = new Vector3(Mathf.Clamp(offset.x, -limit, limit), Mathf.Clamp(offset.y, -limit, limit), 0);
-        transform.localRotation = Quaternion.RotateTowards(transform.localRotation, Quaternion.Euler(offset), 10);
+        transform.localRotation = Quaternion.RotateTowards(transform.localRotation, Quaternion.Euler(offset), 100 * Time.deltaTime);
         offset += -offset * Time.deltaTime * resetSpeed;
     }
 }
