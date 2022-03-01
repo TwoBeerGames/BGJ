@@ -10,11 +10,19 @@ public class Tutorial : MonoBehaviour
     void Start()
     {
         manager.OpenWindow();
+        setGamePaused(true);
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void setGamePaused(bool paused){
+        if(paused)
+            Time.timeScale = 0;
+        else
+            Time.timeScale = 1;
     }
 }

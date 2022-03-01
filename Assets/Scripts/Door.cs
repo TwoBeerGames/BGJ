@@ -53,7 +53,6 @@ public class Door : MonoBehaviour, IInteractable
     {
         if (canInteract)
         {
-            Debug.Log("yes");
             StartCoroutine(switchState());
         }
     }
