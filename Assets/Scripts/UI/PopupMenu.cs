@@ -29,9 +29,8 @@ public class PopupMenu : MonoBehaviour
         }
     }
 
-    public void QuitGame() {
-        Debug.Log("Quit");
-        Application.Quit();
+    public void quitGame() {
+        GlobalFunctions.quitGame();
     }
 
 }

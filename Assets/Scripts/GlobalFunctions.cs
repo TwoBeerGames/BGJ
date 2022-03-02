@@ -27,4 +27,8 @@ public class GlobalFunctions : MonoBehaviour
             return false;
         }
     }
+
+    public static void quitGame() {
+        Application.Quit();
+    }
 }

@@ -62,7 +62,6 @@ public class Wincondition : MonoBehaviour, IInteractable
             if (timeElapsed >= .5f && !firstSequence)
             {
                 firstSequence = true;
-                Debug.Log("now1");
                 yield return null;
                 continue;
 
@@ -70,7 +69,6 @@ public class Wincondition : MonoBehaviour, IInteractable
             else if (timeElapsed >= 2f && !secondSequence)
             {
                 secondSequence = true;
-                Debug.Log("now2");
                 audioSource.PlayOneShot(headlightIgnite);
                 spotLightA.gameObject.SetActive(true);
                 spotLightB.gameObject.SetActive(true);
