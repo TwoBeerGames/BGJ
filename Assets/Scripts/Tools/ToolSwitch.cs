@@ -2,48 +2,70 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Animancer;
 public class ToolSwitch : MonoBehaviour
-{ 
+{
     private Transform selectedItem;
     private List<Transform> childs = new List<Transform>();
+    public AnimancerComponent animancer;
+    public AnimationClip swap;
 
     void Start()
     {
         // Event
-        GlobalInput.masterInput.Mouse.Scroll.performed += ctx => Scrolled(ctx.ReadValue<float>());
+        GlobalInput.masterInput.Mouse.Scroll.performed += ctx =>
+        {
+
+            animancer.Play(swap).Time = 0;
+
+        };
 
         // Tool Childs
-        foreach (Transform item in transform) {
-            if (item.GetComponent<Tool>().unlocked) {
+        foreach (Transform item in transform)
+        {
+            if (item.GetComponent<Tool>().unlocked)
+            {
                 childs.Add(item);
             }
         }
-        
+
         // Set first unlocked Child
-        if (childs.Count > 0) {
+        if (childs.Count > 0)
+        {
             selectedItem = childs[0];
         }
-        
+
         // Select first unlocked Child
         SelectItem();
     }
 
-    void Scrolled (float scroll) {
-        if (selectedItem) {
+
+    public void Scrolled(float scroll)
+    {
+        if (selectedItem)
+        {
             Transform previousSelectedItem = selectedItem;
             int selectedItemIndex = childs.IndexOf(selectedItem);
 
-            if (scroll > 0f) {
-                if (selectedItemIndex >= childs.Count - 1) {
+            if (scroll > 0f)
+            {
+                if (selectedItemIndex >= childs.Count - 1)
+                {
                     selectedItem = childs[0];
-                } else {
+                }
+                else
+                {
                     selectedItem = childs[selectedItemIndex + 1];
                 }
-            } else if (scroll < 0f) {
-                if (selectedItemIndex <= 0) {
+            }
+            else if (scroll < 0f)
+            {
+                if (selectedItemIndex <= 0)
+                {
                     selectedItem = childs[childs.Count - 1];
-                } else {
+                }
+                else
+                {
                     selectedItem = childs[selectedItemIndex - 1];
                 }
             }
@@ -53,11 +75,16 @@ public class ToolSwitch : MonoBehaviour
         }
     }
 
-    void SelectItem () {
-        foreach (Transform item in childs) {
-            if (item == selectedItem) {
+    void SelectItem()
+    {
+        foreach (Transform item in childs)
+        {
+            if (item == selectedItem)
+            {
                 item.gameObject.SetActive(true);
-            } else {
+            }
+            else
+            {
                 item.gameObject.SetActive(false);
             }
         }

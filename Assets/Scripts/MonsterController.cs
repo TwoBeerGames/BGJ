@@ -42,12 +42,18 @@ public class MonsterController : MonoBehaviour
     }
     IEnumerator performDeath()
     {
+        GlobalInput.masterInput.Disable();
+        GlobalInput.leftDown = false;
+        GlobalInput.rightDown = false;
+        GlobalInput.forwardDown = false;
+        GlobalInput.backwardDown = false;
         PlayerController.inst.scream();
         Fader.inst.goBlack(.3f);
         yield return new WaitForSecondsRealtime(2f);
         PlayerController.die.Invoke();
         currentTarget.position = pickNewPOI().position;
         MonsterDelay.inst.respawn();
+        GlobalInput.masterInput.Enable();
     }
 
     void OnTriggerExit(Collider other)

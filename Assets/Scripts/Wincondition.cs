@@ -20,6 +20,7 @@ public class Wincondition : MonoBehaviour, IInteractable
     public AudioClip cargo;
     public AudioSource vacum;
     public Animator gates;
+    public GameObject dools;
     public ParticleSystem süs;
     public ParticleSystem süs1;
     public ParticleSystem süs2;
@@ -40,6 +41,7 @@ public class Wincondition : MonoBehaviour, IInteractable
 
     IEnumerator theEnd()
     {
+        dools.SetActive(false);
         süs.Stop();
         float timeElapsed = 0f;
         interactText.SetActive(false);

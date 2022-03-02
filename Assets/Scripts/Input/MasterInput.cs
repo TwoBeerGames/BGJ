@@ -249,7 +249,7 @@ public class @MasterInput : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""f0666614-d4ac-4c6f-96cb-f21930889813"",
                     ""path"": ""<Mouse>/scroll/y"",
-                    ""interactions"": """",
+                    ""interactions"": ""Tap"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Scroll"",

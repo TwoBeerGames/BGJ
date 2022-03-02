@@ -9,6 +9,7 @@ public class Tutorial : MonoBehaviour
 
     void Start()
     {
+        gameObject.SetActive(true);
         manager.OpenWindow();
         GlobalFunctions.pauseGame();
     }
