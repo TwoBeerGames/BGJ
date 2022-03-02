@@ -50,12 +50,4 @@ public class GlobalInput : MonoBehaviour
 
         masterInput.Mouse.MouseDelta.performed += ctx => { mouseDelta = ctx.ReadValue<Vector2>(); };
     }
-
-    public static bool isGamePaused() {
-        if (Time.timeScale == 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 }

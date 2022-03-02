@@ -19,13 +19,13 @@ public class PopupMenu : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             popupMenuOpen = true;
-            Time.timeScale = 0;
+            GlobalFunctions.pauseGame();
         } else {
             popupMenu.CloseWindow();
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             popupMenuOpen = false;
-            Time.timeScale = 1;
+            GlobalFunctions.continueGame();
         }
     }
 

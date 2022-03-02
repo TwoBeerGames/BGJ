@@ -22,4 +22,12 @@ public class AudioManager : MonoBehaviour
     public void setMusicVolume(float value) {
         mixer.SetFloat(mixerMusic, value);
     }
+
+    public void muteVolume() {
+        AudioListener.volume = 0;
+    }
+
+    public void unmuteVolume() {
+        AudioListener.volume = 1;
+    }
 }

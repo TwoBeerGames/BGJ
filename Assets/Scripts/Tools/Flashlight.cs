@@ -52,7 +52,7 @@ public class Flashlight : Tool
 
     void switchLight(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        if (!GlobalInput.isGamePaused()) {
+        if (!GlobalFunctions.isGamePaused()) {
             on = !on;
             audioSource.Play();
             lightSource.gameObject.SetActive(on);
