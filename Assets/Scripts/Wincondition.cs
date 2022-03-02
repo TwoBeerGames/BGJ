@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Michsky.UI.ModernUIPack;
 
 public class Wincondition : MonoBehaviour, IInteractable
 {
     public bool canInteract { get; set; } = true;
     public TMP_Text goodbye;
+    public GameObject quitButton;
     public GameObject interactText;
     public Camera playerCamera;
     public Transform cockpit;
@@ -27,6 +29,7 @@ public class Wincondition : MonoBehaviour, IInteractable
     void Start()
     {
         goodbye.alpha = 0f;
+        quitButton.SetActive(false);
     }
 
     public void interact()
@@ -105,6 +108,7 @@ public class Wincondition : MonoBehaviour, IInteractable
             {
                 fivthSequence = true;
                 StartCoroutine(fade(0f, 1f, 5f));
+                quitButton.SetActive(true);
                 yield return null;
                 continue;
             }
@@ -123,7 +127,6 @@ public class Wincondition : MonoBehaviour, IInteractable
 
             timeElapsed += Time.deltaTime;
             progress = timeElapsed / time;
-            Debug.Log(timeElapsed);
             goodbye.alpha = Mathf.Lerp(from, to, progress);
             yield return null;
         }
