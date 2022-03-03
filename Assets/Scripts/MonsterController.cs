@@ -133,13 +133,12 @@ public class MonsterController : MonoBehaviour
             for (int j = 0; j < samplesPerRow; j++)
             {
                 Vector3 currentRaycastDirection = Quaternion.AngleAxis(j * sampleStep + (i % 2) * sampleStep / 2, transform.forward) * currentRaycastVector;
-                //Debug.DrawRay(scanOrigin.position, currentRaycastDirection * forwardVisionRange, Color.green, .1f);
+                Debug.DrawRay(scanOrigin.position, currentRaycastDirection * forwardVisionRange, Color.green, .1f);
 
                 if (Physics.Raycast(transform.position, currentRaycastDirection, out hit, forwardVisionRange, whatIsRaycastable))
                 {
                     if (hit.transform.gameObject.layer == 7 || hit.transform.gameObject.layer == 13)
                     {
-                        //Debug.Log("hit");
                         currentState = aggroState;
                         currentTarget.position = player.position;
                         return;

@@ -31,7 +31,8 @@ public class AudioLog : MonoBehaviour, IInteractable
         }
     }
 
-    void stopAudio(){
+    void stopAudio()
+    {
         audioSource.Stop();
     }
 
@@ -44,15 +45,14 @@ public class AudioLog : MonoBehaviour, IInteractable
 
     IEnumerator blindMonster()
     {
-        
+
+        MonsterController.inst.gameObject.SetActive(false);
 
         while (audioSource.isPlaying)
         {
-            MonsterController.inst.gameObject.SetActive(false);
             yield return null;
         }
 
         MonsterController.inst.gameObject.SetActive(true);
-
     }
 }
