@@ -132,6 +132,39 @@ AudioMixerGroupController:
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
+--- !u!244 &-1899400742814602020
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 2850cf383094130438ade443333bd3e2
+  m_EffectName: Attenuation
+  m_MixLevel: 4fc9c9e2594716549827db93e03ef621
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!243 &-1670647425124520487
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Sweepo
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: b046cce8467b8f94aab8469890f3c98c
+  m_Children: []
+  m_Volume: ac798ef2378e0c0459b47a0ff674a26f
+  m_Pitch: 7ed931fe2919f0f45a15435858a5550b
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -1899400742814602020}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!244 &-1090934107067521052
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -180,6 +213,7 @@ AudioMixerController:
     - 4363a689932866543989d6a5ba8c9e3a
     - be8dceb6bb31a1342b329e04bc22150b
     - a33c9010d513ec54c8e656afdf66881b
+    - b046cce8467b8f94aab8469890f3c98c
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -234,6 +268,7 @@ AudioMixerSnapshotController:
     137dc5118c70674409e6e7aed501f938: 0.24299999
     60bfeee17c7d4a74bb73950d1c9fb5c6: 1183
     eef6e8d2c75e479489c513fd5877ebf2: 357
+    ac798ef2378e0c0459b47a0ff674a26f: 5.1526933
     0587a6130a3901349bdbacc81c3a4c8c: 2
     5872ec634007d704cb10d82a442d4777: 0.693
     34c2b944a937c704984b3e54f8ddd730: 5
@@ -261,7 +296,7 @@ AudioMixerSnapshotController:
     186ae51c10c16ea4cb5b79c059458b9d: 5.1526933
     5eae918c91593674b91bd8023668a3cb: 6053
     35ad269c966a6cd49ab3f15fe17b218a: 0
-    3eef75bc8a1e13848bd2b42972173e5a: -5.3230715
+    3eef75bc8a1e13848bd2b42972173e5a: -0.08374829
     a43112ce19df59748bf583ad1d354bc2: 0.376
     c8afa01f9574d37479ea463a16bf3c0c: 1
     0a1d451f108811b41a1bc677595252f1: 1
@@ -408,6 +443,7 @@ AudioMixerGroupController:
   - {fileID: -4222434452947924384}
   - {fileID: 8856429088269937121}
   - {fileID: -7403330358777560346}
+  - {fileID: -1670647425124520487}
   m_Volume: 3eef75bc8a1e13848bd2b42972173e5a
   m_Pitch: 3baa9dfb5e1aed0408226ca3e8354659
   m_Send: 00000000000000000000000000000000
