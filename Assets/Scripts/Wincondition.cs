@@ -26,6 +26,9 @@ public class Wincondition : MonoBehaviour, IInteractable
     public ParticleSystem süs2;
     public Animator planeAnimator;
     public Animator cameraanimator;
+
+    public AlertSignals alertSignal;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +44,7 @@ public class Wincondition : MonoBehaviour, IInteractable
 
     IEnumerator theEnd()
     {
+        alertSignal.startAlert();
         dools.SetActive(false);
         süs.Stop();
         float timeElapsed = 0f;
