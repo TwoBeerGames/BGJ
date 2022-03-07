@@ -8,8 +8,11 @@ public class SimpleTurn : MonoBehaviour
     [Range(0,1000)]
     public int speed = 150;
 
-    void Update()
-    {
+    void Start() {
+        gameObject.SetActive(false);
+    }
+
+    void Update() {
         transform.rotation *= Quaternion.Euler(rotationVector * speed * Time.deltaTime);
     }
 }
