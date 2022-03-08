@@ -201,6 +201,8 @@ AudioMixerController:
     name: MusicVolume
   - guid: 6ed049a7a41726a45937c9f2d264d0d7
     name: SFXVolume
+  - guid: 68927d8b3e03fd44ebdaf18c904827d7
+    name: StepsVolume
   m_AudioMixerGroupViews:
   - guids:
     - bc5850f8f77a67b4d81b24b66c7168a5

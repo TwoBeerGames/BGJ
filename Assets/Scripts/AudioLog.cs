@@ -8,7 +8,7 @@ public class AudioLog : MonoBehaviour, IInteractable
     AudioSource audioSource;
     public GameObject uiElement;
     public ParticleSystem süs;
-
+    public Monitor monitor;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +25,7 @@ public class AudioLog : MonoBehaviour, IInteractable
             StoryProgression.progressionUpdate.Invoke();
             canInteract = false;
             audioSource.Play();
+            monitor.typeText();
             süs.Stop();
             uiElement.SetActive(false);
             StartCoroutine(blindMonster());
