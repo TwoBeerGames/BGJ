@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioLog : MonoBehaviour, IInteractable
 {
@@ -9,6 +10,9 @@ public class AudioLog : MonoBehaviour, IInteractable
     public GameObject uiElement;
     public ParticleSystem süs;
     public Monitor monitor;
+    public AudioMixerGroup steps;
+    const string stepsMixerName = "StepsVolume";
+
 
     // Start is called before the first frame update
     void Start()
@@ -46,8 +50,8 @@ public class AudioLog : MonoBehaviour, IInteractable
 
     IEnumerator blindMonster()
     {
-
         MonsterController.inst.gameObject.SetActive(false);
+        steps.audioMixer.SetFloat(stepsMixerName, -80f);
 
         while (audioSource.isPlaying)
         {
@@ -55,5 +59,6 @@ public class AudioLog : MonoBehaviour, IInteractable
         }
 
         MonsterController.inst.gameObject.SetActive(true);
+        steps.audioMixer.ClearFloat(stepsMixerName);
     }
 }

@@ -8,6 +8,7 @@ public class Monitor : MonoBehaviour
 {
     public TextMeshProUGUI textComponent;
     public float slow = 0f;
+    public float timestampSlow = 0.135f;
     public string text;
     public float timeBeforeClose;
 
@@ -30,7 +31,7 @@ public class Monitor : MonoBehaviour
             index++;
             textComponent.text += c;
             if (index <= 26) {
-                localSlow = 0.135f;
+                localSlow = timestampSlow;
             } else {
                 localSlow = slow;
             }
