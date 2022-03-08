@@ -9,33 +9,35 @@ public class Flashlight : Tool
     public AudioSource audioSource;
     public GameObject hand;
     public static bool on = false;
-    // public float power = 1f;
-    // public float wasteRate = 1f;
-    // private float initialIntensity;
+    public Transform alien;
+    public LayerMask whatIsRaycastable;
+    public float triggerAngle = 5f;
+    MonsterController monc;
 
-    // Start is called before the first frame update
     void Start()
     {
         lightSource.gameObject.SetActive(false);
-        // initialIntensity = lightSource.intensity;
+        monc = alien.GetComponent<MonsterController>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        // if (on)
-        //     power -= wasteRate * Time.deltaTime;
-        // else
-        //     power += wasteRate * Time.deltaTime;
-
-        // power = Mathf.Clamp(power, 0f, 1f);
-
-        // lightSource.intensity = initialIntensity * power;
-
-        // if (power <= 0)
-        // {
-        //     on = false;
-        //     lightSource.gameObject.SetActive(on);
-        // }
+        if (alien.gameObject.activeInHierarchy && on)
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, alien.transform.position - transform.position, out hit, 100f, whatIsRaycastable))
+            {
+                MonsterController mc = hit.transform.GetComponent<MonsterController>();
+                if (mc != null)
+                {
+                    if (Vector3.Angle(transform.right, alien.transform.position - transform.position) <= triggerAngle)
+                    {
+                        mc.aggroPlayer();
+                        mc.buff(true);
+                    }
+                }
+            }
+        }
     }
 
     void OnEnable()
@@ -52,7 +54,8 @@ public class Flashlight : Tool
 
     void switchLight(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        if (!GlobalFunctions.isGamePaused()) {
+        if (!GlobalFunctions.isGamePaused())
+        {
             on = !on;
             audioSource.Play();
             lightSource.gameObject.SetActive(on);

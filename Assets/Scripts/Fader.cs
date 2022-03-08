@@ -38,7 +38,6 @@ public class Fader : MonoBehaviour
 
             auto.minLuminance.value = Mathf.Lerp(from, to, progress);
             yield return null;
-            continue;
         }
 
         auto.maxLuminance.value = to;

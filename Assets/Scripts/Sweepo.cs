@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Sweepo : MonoBehaviour
 {
-    public SimpleTurn turn;
+    public GameObject turn;
     public AudioSource audioSource;
-    bool done = false;
+    public bool done = false;
     // Start is called before the first frame update
     void Start()
     {
-        turn.gameObject.SetActive(false);
+        turn.SetActive(false);
     }
 
     public void OnTriggerEnter(Collider other)
@@ -27,11 +27,11 @@ public class Sweepo : MonoBehaviour
     IEnumerator boo()
     {
         audioSource.Play();
-        turn.gameObject.SetActive(true);
+        turn.SetActive(true);
         while (audioSource.isPlaying)
         {
             yield return null;
         }
-        turn.gameObject.SetActive(false);
+        turn.SetActive(false);
     }
 }

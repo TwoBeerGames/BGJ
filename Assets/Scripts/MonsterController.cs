@@ -30,8 +30,10 @@ public class MonsterController : MonoBehaviour
     public const string aggroState = "2";
     const string idleAnimation = "IdleSniffleAround";
     public bool playerInPerceptionRange = false;
+    public float flashLightAggro = 3f;
 
     float initialSpeed = 0;
+    public float initialSpeedMultiplier = 0f;
 
     void OnTriggerEnter(Collider other)
     {
@@ -48,7 +50,7 @@ public class MonsterController : MonoBehaviour
         GlobalInput.forwardDown = false;
         GlobalInput.backwardDown = false;
         PlayerController.inst.scream();
-        Fader.inst.goBlack(.3f);
+        Fader.inst.goBlack(.1f);
         yield return new WaitForSecondsRealtime(2f);
         PlayerController.die.Invoke();
         currentTarget.position = pickNewPOI().position;
@@ -68,6 +70,8 @@ public class MonsterController : MonoBehaviour
 
     public void Start()
     {
+        initialSpeedMultiplier = speedMultiplier;
+
         path = GetComponent<AIPath>();
         currentTarget.position = transform.position;
         inst = this;
@@ -93,14 +97,16 @@ public class MonsterController : MonoBehaviour
     public void FixedUpdate()
     {
         scan();
-
         manageAnimation();
 
     }
 
     private void OnEnable()
     {
+        //speedMultiplier = initialSpeedMultiplier;
+        Debug.Log(speedMultiplier);
         StartCoroutine(evaluateNewTarget());
+        StartCoroutine(resetSpeed());
     }
 
     private void manageAnimation()
@@ -191,6 +197,33 @@ public class MonsterController : MonoBehaviour
         }
     }
 
+    public void aggroPlayer()
+    {
+        currentState = aggroState;
+        currentTarget.position = player.position;
+    }
+
+    public void buff(bool state)
+    {
+        if (state)
+        {
+            speedMultiplier = initialSpeedMultiplier * flashLightAggro;
+        }
+        else
+        {
+            speedMultiplier = initialSpeedMultiplier;
+        }
+    }
+
+    IEnumerator resetSpeed()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(.1f);
+            speedMultiplier = initialSpeedMultiplier;
+            yield return new WaitForSeconds(5f);
+        }
+    }
     IEnumerator evaluateNewTarget()
     {
         float timeElapsed = 0;

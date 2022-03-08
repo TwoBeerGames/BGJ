@@ -44,7 +44,7 @@ public class Wincondition : MonoBehaviour, IInteractable
 
     IEnumerator theEnd()
     {
-        alertSignal.startAlert();
+
         dools.SetActive(false);
         süs.Stop();
         float timeElapsed = 0f;
@@ -81,10 +81,9 @@ public class Wincondition : MonoBehaviour, IInteractable
                 audioSource.PlayOneShot(headlightIgnite);
                 spotLightA.gameObject.SetActive(true);
                 spotLightB.gameObject.SetActive(true);
-
+                alertSignal.startAlert();
                 audioSource.PlayOneShot(cargo);
                 yield return null;
-                continue;
             }
             else if (timeElapsed >= 5f && !thirdSequence)
             {
@@ -94,7 +93,6 @@ public class Wincondition : MonoBehaviour, IInteractable
                 süs1.Play();
                 süs2.Play();
                 yield return null;
-                continue;
             }
             else if (timeElapsed >= 15f && !sixthSequence)
             {
@@ -106,17 +104,15 @@ public class Wincondition : MonoBehaviour, IInteractable
             else if (timeElapsed >= 20f && !fourthSequence)
             {
                 fourthSequence = true;
-                Fader.inst.goBlack(1f);
+                Fader.inst.goBlack(.2f);
                 yield return null;
-                continue;
             }
-            else if (timeElapsed >= 22f && !fivthSequence)
+            else if (timeElapsed >= 20f && !fivthSequence)
             {
                 fivthSequence = true;
-                StartCoroutine(fade(0f, 1f, 5f));
+                StartCoroutine(fade(0f, 1f, 2f));
                 quitButton.SetActive(true);
                 yield return null;
-                continue;
             }
             yield return null;
         }

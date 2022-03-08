@@ -17,6 +17,8 @@ public class HalluzinationController : MonoBehaviour
     float initialAnimatorSpeed = 0f;
     float initialSpeed = 0;
     public float maxAnimatorSpeed = 2;
+    float maxAliveTime = 10;
+    float currentAliveTime = 0f;
 
 
 
@@ -36,10 +38,25 @@ public class HalluzinationController : MonoBehaviour
         StartCoroutine(delay());
     }
 
-  
+
+    void OnEnable()
+    {
+        currentAliveTime = 0f;
+    }
 
     public void Update()
     {
+        if (halluzinationAgent.activeInHierarchy)
+        {
+            currentAliveTime += Time.deltaTime;
+
+            if (currentAliveTime >= maxAliveTime)
+            {
+               halluzinationAgent.SetActive(false);
+            }
+        }
+
+
         halluzinationAnimator.speed += Time.deltaTime * speedIncrease;
         path.maxSpeed += Time.deltaTime * speedIncrease;
 
@@ -48,7 +65,8 @@ public class HalluzinationController : MonoBehaviour
 
     void OnDisable()
     {
-        if (halluzinationAnimator) {
+        if (halluzinationAnimator)
+        {
             halluzinationAnimator.speed = initialAnimatorSpeed;
         }
         path.maxSpeed = initialSpeed;
@@ -94,7 +112,7 @@ public class HalluzinationController : MonoBehaviour
 
     IEnumerator startHalluzniations()
     {
-        yield return new WaitForSecondsRealtime(Random.Range(halluzinationInterval, 2 * halluzinationInterval));
+        yield return new WaitForSeconds(Random.Range(halluzinationInterval, 2 * halluzinationInterval));
 
         Transform newTarget = pickNewPOI();
 
@@ -108,7 +126,7 @@ public class HalluzinationController : MonoBehaviour
     IEnumerator delay()
     {
         halluzinationAgent.gameObject.SetActive(false);
-        yield return new WaitForSecondsRealtime(halluzinationInterval);
+        yield return new WaitForSeconds(halluzinationInterval);
         halluzinationAgent.gameObject.SetActive(true);
     }
 }
