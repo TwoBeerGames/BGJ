@@ -26,7 +26,6 @@ public class StartDoor : MonoBehaviour, IInteractable
             progress = timeElapsed / duration;
             transform.rotation = initialRotation * Quaternion.Euler(destinationRotation * progress);
             yield return null;
-            continue;
         }
 
         transform.rotation = initialRotation * Quaternion.Euler(destinationRotation);
@@ -37,6 +36,7 @@ public class StartDoor : MonoBehaviour, IInteractable
     {
         if (canInteract)
         {
+            MonsterDelay.inst.respawn();
             GetComponent<AudioSource>().Play();
             canInteract = false;
             süs.Stop();

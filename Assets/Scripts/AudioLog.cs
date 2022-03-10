@@ -55,6 +55,8 @@ public class AudioLog : MonoBehaviour, IInteractable
 
         while (audioSource.isPlaying)
         {
+            Debug.Log("gerd dead");
+            MonsterController.inst.gameObject.SetActive(false);
             yield return null;
         }
 

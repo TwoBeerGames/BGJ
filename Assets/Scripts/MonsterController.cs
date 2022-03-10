@@ -68,7 +68,7 @@ public class MonsterController : MonoBehaviour
         }
     }
 
-    public void Start()
+    public void Awake()
     {
         initialSpeedMultiplier = speedMultiplier;
 
@@ -103,8 +103,6 @@ public class MonsterController : MonoBehaviour
 
     private void OnEnable()
     {
-        //speedMultiplier = initialSpeedMultiplier;
-        Debug.Log(speedMultiplier);
         StartCoroutine(evaluateNewTarget());
         StartCoroutine(resetSpeed());
     }
@@ -139,7 +137,7 @@ public class MonsterController : MonoBehaviour
             for (int j = 0; j < samplesPerRow; j++)
             {
                 Vector3 currentRaycastDirection = Quaternion.AngleAxis(j * sampleStep + (i % 2) * sampleStep / 2, transform.forward) * currentRaycastVector;
-                Debug.DrawRay(scanOrigin.position, currentRaycastDirection * forwardVisionRange, Color.green, .1f);
+                //Debug.DrawRay(scanOrigin.position, currentRaycastDirection * forwardVisionRange, Color.green, .1f);
 
                 if (Physics.Raycast(transform.position, currentRaycastDirection, out hit, forwardVisionRange, whatIsRaycastable))
                 {

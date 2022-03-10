@@ -22,8 +22,7 @@ public class Wincondition : MonoBehaviour, IInteractable
     public Animator gates;
     public GameObject dools;
     public ParticleSystem süs;
-    public ParticleSystem süs1;
-    public ParticleSystem süs2;
+
     public Animator planeAnimator;
     public Animator cameraanimator;
 
@@ -90,8 +89,6 @@ public class Wincondition : MonoBehaviour, IInteractable
                 thirdSequence = true;
                 gates.Play("gate_open");
                 vacum.Play();
-                süs1.Play();
-                süs2.Play();
                 yield return null;
             }
             else if (timeElapsed >= 15f && !sixthSequence)

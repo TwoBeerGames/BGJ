@@ -5,6 +5,7 @@ using UnityEngine;
 public class RickRoll : MonoBehaviour, IInteractable
 {
     public bool canInteract { get; set; }
+    public GameObject rick;
     void Start()
     {
         canInteract = true;
@@ -17,6 +18,7 @@ public class RickRoll : MonoBehaviour, IInteractable
         {   
             canInteract = false;
             GetComponent<AudioSource>().Play();
+            rick.SetActive(true);
         }
 
     }

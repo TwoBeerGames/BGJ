@@ -12,7 +12,6 @@ public class MonsterDelay : MonoBehaviour
     {
         startPosition = monster.transform.position;
         inst = this;
-        respawn();
     }
 
 
