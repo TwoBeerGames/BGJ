@@ -12,6 +12,7 @@ public class AudioLog : MonoBehaviour, IInteractable
     public Monitor monitor;
     public AudioMixerGroup steps;
     const string stepsMixerName = "StepsVolume";
+    public GameObject monster;
 
 
     // Start is called before the first frame update
@@ -50,13 +51,12 @@ public class AudioLog : MonoBehaviour, IInteractable
 
     IEnumerator blindMonster()
     {
-        MonsterController.inst.gameObject.SetActive(false);
+        monster.SetActive(false);
         steps.audioMixer.SetFloat(stepsMixerName, -80f);
 
         while (audioSource.isPlaying)
         {
-            Debug.Log("gerd dead");
-            MonsterController.inst.gameObject.SetActive(false);
+            monster.SetActive(false);
             yield return null;
         }
 
